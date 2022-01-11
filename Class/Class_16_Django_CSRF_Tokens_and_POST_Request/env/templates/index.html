@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <title>Text Utils</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="/">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">about Us</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Contact Us</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Dropdown link
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li><a class="dropdown-item" href="#">Something else here</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <form class="d-flex" action="/analyze" method="post"> {% csrf_token %}
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+          </div>
+        </nav>
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+          <strong>Welcome To TextUtils!</strong> You Can edit text here
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        <div class="container">
+          <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label">Enter you text here and let Text Utils do the magic</label>
+            <textarea class="form-control"  name="text" id="exampleFormControlTextarea1" rows="8"></textarea>
+          </div>
+          <div class="form-check form-switch">
+            <input class="form-check-input" name="removepunc" type="checkbox" id="flexSwitchCheckDefault" >
+            <label class="form-check-label" for="flexSwitchCheckDefault">Remove Punchuations</label>
+          </div>
+          <div class="form-check form-switch">
+            <input class="form-check-input" name="fullcaps" type="checkbox" id="flexSwitchCheckDefault2" >
+            <label class="form-check-label" for="flexSwitchCheckDefault2">UPPERCASE</label>
+          </div>
+          <div class="form-check form-switch">
+            <input class="form-check-input" name="newlineremover" type="checkbox" id="flexSwitchCheckDefault3" >
+            <label class="form-check-label" for="flexSwitchCheckDefault3">New Line Remover</label>
+          </div>
+          <div class="form-check form-switch">
+            <input class="form-check-input" name="extraspaceremover" type="checkbox" id="flexSwitchCheckDefault4" >
+            <label class="form-check-label" for="flexSwitchCheckDefault4"> Extra Space Remover</label>
+          </div>
+          <div class="form-check form-switch">
+            <input class="form-check-input" name="charectorcounter" type="checkbox" id="flexSwitchCheckDefault5" >
+            <label class="form-check-label" for="flexSwitchCheckDefault5"> Charector Coutner</label>
+            <br>
+          </div>
+          <button type="submit" class="btn btn-dark mt-2">Analyze Text</button>
+         </form>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+  </body>
+</html>

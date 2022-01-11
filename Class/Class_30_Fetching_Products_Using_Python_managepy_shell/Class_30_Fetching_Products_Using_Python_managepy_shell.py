@@ -1,0 +1,34 @@
+"""
+-> firstly go to the root directory of the project and write in terminal:
+    -> python manage.py shell
+-> through this shell we can test the model that we have created in this project
+-> now write:
+    -> from shop.models import Product
+        -> now this product will import
+-> then write:
+    -> Product.objects.all()
+        -> which will show us the all product that are avilable in our database
+-> now you can import the data from the terminal as well by:
+    -> myprod = Product(product_name="mouse", category="computer", subcategory="devices",price=12, desc="chooha hai ye", pub_date=timezone.now())
+        -> if it says timezone is not define then import it by writing in terminal:
+            -> from django.utils import timezone
+        -> then import the previous data 
+-> now to save that data we have to write:
+    -> myprod.save()
+-> now if you will write:
+    -> myprod.product_id
+    -> then you will get the product id:
+        -> <class 'django.db.models.fields.AutoField'>
+    -> as well:
+        -> myprod.product_name
+-> if we want to get or query the product then we can write:
+    -> Product.objects.get(product_name="mouse")
+-> if we will wirte:
+    -> a = Product.objects.get(product_name="mouse")
+    -> then:
+        -> a.category
+        -> we will get:
+            -> 'computer'
+
+-> NOTE: if you want to more about python manage.py shell then go to the internet and read the document about this topic
+"""
