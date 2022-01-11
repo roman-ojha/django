@@ -7,7 +7,7 @@
     -> python manage.py createsuperuser
     -> now it will ask some question to configure fill the field
     -> Username: roman
-    -> Email address: razzroman98@gmail.com
+    -> Email address: .env.EMAIL
     -> Password: 1234 (Not recomended and not secure)
 -> now we create superuser
 -> we know that in 'env/urls.py' we had :
