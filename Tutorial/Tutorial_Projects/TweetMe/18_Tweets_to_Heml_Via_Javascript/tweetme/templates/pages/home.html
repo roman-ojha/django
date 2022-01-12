@@ -1,0 +1,34 @@
+{%extends 'base.html' %}
+
+{%block content %}
+    Hello
+
+    <div id="tweets">
+        Loading...
+    </div>
+
+    <script>
+        const tweetsElement =document.getElementById('tweets');
+
+        const xhr=new XMLHttpRequest();
+        const method="GET";
+        const url ='/tweets';
+        const responseType="json";
+        xhr.responseType=responseType;
+        xhr.open(method,url);
+        xhr.onload=function(){
+            const serverResponse=xhr.response;
+            const listedItems=serverResponse.response
+            var finalTweetStr="";
+            var i;
+            for(i=0;i<listedItems.length;i++){
+                console.log(listedItems[i]);
+                var currentItem = "<h1 class='mb-4'>"+listedItems[i].id+"</h1>"+"<p>"+listedItems[i].content+"</p>";
+                finalTweetStr+=currentItem;
+            }
+            tweetsElement.innerHTML=finalTweetStr;
+        }
+        xhr.send();
+    </script>
+
+{% endblock content %}
