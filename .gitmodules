@@ -1,0 +1,3 @@
+[submodule "Tutorial/Tut_02_Djongo"]
+	path = Tutorial/Tut_02_Djongo
+	url = https://github.com/roman-ojha/djongo
