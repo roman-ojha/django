@@ -1,5 +1,7 @@
 """
 -> python -m pip install pipenv --upgrade
+    -> to setup python virtual environment we have to first install 'pipenv'
+    -> or: pip install pipenv
 -> pipenv
 
 -> here we are using python djanog=2.2
