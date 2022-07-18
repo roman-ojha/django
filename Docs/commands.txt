@@ -1,0 +1,7 @@
+-> pip install django (install django latest version)
+-> pip install django==<version> (install django specific version)
+-> django-admin (to see all django admin command)
+-> django-admin startproject <project_name> . (to initialized django project in current directory)
+-> python manage.py runserver (to run server)
+-> python manage.py makemigrations (to make migrations)
+-> python manage.py migrate (to migrate)
