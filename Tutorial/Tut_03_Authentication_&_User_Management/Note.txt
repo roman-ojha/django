@@ -1,0 +1,15 @@
+*) Overview:
+    -> Authentication for Django Website
+        -> Create user account
+        -> SignIn to user account
+        -> SignOut to user account
+    -> User Permission:
+        -> Assign specific permission to users and restrict parts of our website to those users
+        -> Ex: Type of User:
+            1) Default User
+                -> ability to Post
+                -> delete own posts
+            2) MOD User
+                -> Mod Delete any post
+                -> Ban Users
+    -> Django User Management Dashboard Using Retool
