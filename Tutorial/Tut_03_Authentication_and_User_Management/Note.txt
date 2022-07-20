@@ -13,3 +13,14 @@
                 -> Mod Delete any post
                 -> Ban Users
     -> Django User Management Dashboard Using Retool
+    -> Using Postgres database
+
+*) Setup:
+    -> python -m venv venv
+    -> cd .\venv\Scripts\
+    -> .\activate.ps1
+    -> poetry init
+    -> poetry add django
+    -> poetry add crispy-bootstrap5
+    -> django-admin startproject config .
+    -> python manage.py startapp myApp
