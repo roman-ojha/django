@@ -24,3 +24,16 @@
     -> poetry add crispy-bootstrap5
     -> django-admin startproject config .
     -> python manage.py startapp myApp
+    -> INSTALLED_APPS = [
+        'myApp.apps.MyappConfig',
+        'crispy_forms',
+        'crispy_bootstrap5',
+    ]
+    -> python manage.py runserver
+
+
+*) 
+    -> create url for the app
+    -> create template for app
+        -> myApp
+        -> registration (this will contain all the template related to authentication)
