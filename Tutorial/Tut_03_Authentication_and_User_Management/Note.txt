@@ -28,7 +28,9 @@
         'myApp.apps.MyappConfig',
         'crispy_forms',
         'crispy_bootstrap5',
-    ]
+        ]
+        CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+        CRISPY_TEMPLATE_PACK = "bootstrap5"
     -> python manage.py runserver
 
 
@@ -37,3 +39,12 @@
     -> create template for app
         -> myApp
         -> registration (this will contain all the template related to authentication)
+
+*) setup Database
+    -> we will host database remotely using heroku
+    -> so create app:
+        -> NOTE: heroku free database goes down for 6 hours daily
+        -> add 'add-ons'
+        -> https://elements.heroku.com/addons/heroku-postgresql
+        -> find the database credentials to connect through django application
+        

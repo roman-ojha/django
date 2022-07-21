@@ -1,0 +1,6 @@
+*) Dotenv:
+    -> NOTE: this is not only applicable for django application but all python based application
+    -> https://pypi.org/project/python-decouple/
+    -> https://pypi.org/project/python-dotenv/
+    -> pip install python-decouple
+    -> poetry add python-decouple
