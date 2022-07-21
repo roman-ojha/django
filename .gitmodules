@@ -1,3 +1,6 @@
 [submodule "Tutorial/Tut_02_Djongo"]
 	path = Tutorial/Tut_02_Djongo
 	url = https://github.com/roman-ojha/djongo
+[submodule "Tutorial/Tut_03_Authentication_and_User_Management"]
+	path = Tutorial/Tut_03_Authentication_and_User_Management
+	url = git@github.com:roman-ojha/django-auth-and-user-management.git
