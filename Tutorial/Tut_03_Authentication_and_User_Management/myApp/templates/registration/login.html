@@ -1,0 +1,14 @@
+{% extends 'myApp/base.html' %} 
+{% block title %}Login{% endblock %} 
+{% load crispy_forms_tags %} 
+{% comment %} this will allow us to use following two tags {% endcomment %}
+{% block content %}
+<form method="post">
+  {% csrf_token %}{{form|crispy}}
+  {% comment %} here we want to display a form that is proviede to us by django that's why we want to have crispy forms {% endcomment %}
+  {% comment %} 'csrf_token' is for form security {% endcomment %}
+  {% comment %} 'form' will get contain email address, password those field which is need to sign in and '|' pipe and 'crispy' it means that we are going to using crispy form to display 'form' {% endcomment %}
+  <p>Don't have an account? Create one <a href="/sign-up">Here</a>!</p>
+  <button type="submit" class="btn btn-success">Login</button>
+</form>
+{% endblock %}

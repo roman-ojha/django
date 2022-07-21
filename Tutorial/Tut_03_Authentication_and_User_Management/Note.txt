@@ -60,3 +60,14 @@
             }
         -> poetry add psycopg2-binary
         -> python manage.py migrate
+
+*) Retool Setup:
+    -> create new app:
+    -> add new database resources
+    -> add database credentials to connect
+    -> check on 'Connect using SSL'
+    -> get database table data for test:
+        -> select * from pg_catalog.pg_tables
+    
+*) create Auth Login Page:
+    -> first add url on 'config/urls.py'

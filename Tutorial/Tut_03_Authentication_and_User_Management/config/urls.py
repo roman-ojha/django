@@ -1,22 +1,13 @@
-"""config URL Configuration
-
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/4.0/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
 from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('myApp.urls')),
+    path('', include('django.contrib.auth.urls'))
+    # so these are bunch of pre-build urls that will automatically do things like login, logout, password reset
+    # and you need to write html template to allow this to work
+    # so inside the 'myApp/templates/registration' we will create 'login.html'
+    # and now that will happen is that login root that is provided by the django will automatically render this login page whenever user will go to the url '/login'
+    # NOTE: the template needs to be inside the registration folder
 ]
