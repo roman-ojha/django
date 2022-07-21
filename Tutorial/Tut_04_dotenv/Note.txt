@@ -4,3 +4,13 @@
     -> https://pypi.org/project/python-dotenv/
     -> pip install python-decouple
     -> poetry add python-decouple
+    -> create '.env' file
+    -> add env variable
+    *) Import
+        -> from decouple import config
+    *) Access it:
+        -> SECRET_KEY = config('SECRET_KEY')
+    *) Cast string type to other type:
+        -> DEBUG = config('DEBUG',cast=bool)
+    *) Pass default value:
+        -> DEBUG = config('DEBUG',cast=boolean,default=True)
