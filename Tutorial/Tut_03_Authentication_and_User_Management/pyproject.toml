@@ -10,6 +10,8 @@ python = "^3.10"
 Django = "^4.0.6"
 autopep8 = "^1.6.0"
 crispy-bootstrap5 = "^0.6"
+python-decouple = "^3.6"
+psycopg2-binary = "^2.9.3"
 
 [tool.poetry.dev-dependencies]
 

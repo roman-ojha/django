@@ -47,4 +47,16 @@
         -> add 'add-ons'
         -> https://elements.heroku.com/addons/heroku-postgresql
         -> find the database credentials to connect through django application
-        
+        -> inside setting.py:
+            -> DATABASES = {
+                'default': {
+                    'ENGINE': 'django.db.backends.postgresql',
+                    'NAME': config('DatabaseName'),
+                    'USER': config('DatabaseUser'),
+                    'PASSWORD': config('DatabasePassword'),
+                    'HOST': config('DatabaseHost'),
+                    'PORT': config('DatabasePort')
+                }
+            }
+        -> poetry add psycopg2-binary
+        -> python manage.py migrate
