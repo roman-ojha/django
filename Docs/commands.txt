@@ -5,4 +5,5 @@
 -> python manage.py runserver (to run server)
 -> python manage.py makemigrations (to make migrations)
 -> python manage.py migrate (to migrate)
--> python .\manage.py runserver <port> (run django on given port)
+-> python manage.py runserver <port> (run django on given port)
+-> python manage.py shell (run django shell)
