@@ -7,3 +7,6 @@
 [submodule "Tutorial/Tut_05_Rest_Framework"]
 	path = Tutorial/Tut_05_Rest_Framework
 	url = https://github.com/roman-ojha/rest-framework
+[submodule "Tutorial/Tutorial_Projects/TweetMe"]
+	path = Tutorial/Tutorial_Projects/TweetMe
+	url = git@github.com:roman-ojha/django-tweetme.git
