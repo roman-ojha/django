@@ -7,3 +7,5 @@
 -> python manage.py migrate (to migrate)
 -> python manage.py runserver <port> (run django on given port)
 -> python manage.py shell (run django shell)
+-> python manage.py createsuperuser (to create superuser)
+-> python manage.py changepassword <username>
