@@ -1,0 +1,29 @@
+*) Django:
+    -> Django is a free, open-source Python based High-Level Web Framework
+    -> It follows the Model View Template(MVT) architectural pattern.
+    -> It was originally created by Adrian Holovaty and Simon Willison.
+    -> It was created on 2003
+    -> Provide SQLite Database by Default
+
+*) What we can build with Django:
+    -> We can build High End web application
+    -> It encourages rapid development and clean, pragmatic design
+
+*) Django Project:
+    -> A Django Project may contain multiple Project Application, which means a group of application and files is called as Django Project.
+    -> Single or Group of application create a Django Project
+    -> EX:
+        SchoolProject:
+        -> Registration App
+        -> Fees App
+        -> Exam App
+        -> Attendance App
+        -> Result App
+    -> after create Project ex project name is 'schoolProject' then:
+        -> schoolProject (outer project folder)
+            -> schoolProject (inner project folder)
+                -> __init__.py 
+                -> asgi.py
+                -> settings.py
+                -> wsgi.py
+            -> manage.py
