@@ -1,0 +1,22 @@
+*) MVT (Model View Template):
+    -> The MVT is an design patter that separates an application into three main logical component Model, View and Template
+    -> Each of these component has their own role in a Project
+
+*) Model:
+    -> The model responsible to handle database. It is a data access layer which handle the data
+
+*) View:
+    -> The user can sen request by interacting with template, the views handles these request and send to Model then get appropriate response from the Model, sends response to template.
+    -> It may also have required logics.
+    -> It works as a mediator between Template and Model.
+
+*) Template:
+    -> It represents how data should be presented to the application user. User can read or write the data from template
+    -> Basically it is responsible for showing end user content, we can say it is user interface.
+    -> It amy consists of HTML, CSS, JS mixed with Django template language
+
+*) Why MVT:
+    -> Organized Code
+    -> Independent Block
+    -> Reduces the complexity of web applications
+    -> Easy to Maintain & Modify
