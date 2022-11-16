@@ -1,0 +1,5 @@
+*) Setup and Install
+    -> we already learn about how to create venv and install django
+
+*) Uninstall:
+    -> 
