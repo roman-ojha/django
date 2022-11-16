@@ -2,4 +2,6 @@
     -> we already learn about how to create venv and install django
 
 *) Uninstall:
-    -> 
+    -> Step1 : Activate Virtual Environment
+    -> Step2 : Uninstall Django from VE:
+    -> Step3 : remove Virtual Environment

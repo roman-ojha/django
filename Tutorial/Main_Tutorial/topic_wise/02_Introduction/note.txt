@@ -19,11 +19,16 @@
         -> Exam App
         -> Attendance App
         -> Result App
+
+*) Django Directory Structure:
     -> after create Project ex project name is 'schoolProject' then:
-        -> schoolProject (outer project folder)
-            -> schoolProject (inner project folder)
-                -> __init__.py 
-                -> asgi.py
-                -> settings.py
-                -> wsgi.py
-            -> manage.py
+        -> schoolProject (Outer project folder/Root Directory)
+            -> schoolProject (Inner project folder)
+                -> __init__.py (The folder which contains __init__.py file si considered as a python package)
+                -> asgi.py (Asynchronous Server Gateway Interface) is a spiritual successor to WSGI, intended to provide a standard interface between async-capable Python web servers, frameworks, and application. ASGI provides standard for both asynchronous and synchronous apps.
+                -> settings.py (This file contains all the information or data about project settings EX: Database Config, Template, Installed Application, Validators, Middleware etc..)
+                -> urls.py (This file contains information of url attached with application).
+                -> wsgi.py (Web Server Gateway Interface, Is a specification that describes how a web server communicates which web application, and how web applications can be chained together to process on request. WSGI Provided a standard for synchronous Python apps.)
+            -> manage.py (manage.py is automatically created in each Django Project. It is Django's command-line utility also set the DJANGO_SETTINGS_MODULE environment variable so that it points to your project's setting.py file. Generally, when working on a single Django project, it's easier ot use manage.py that django-admin.) 
+            -> __pycache__ (create cache for project files for fast load)
+            -> db.sqlite3 (default django database)
