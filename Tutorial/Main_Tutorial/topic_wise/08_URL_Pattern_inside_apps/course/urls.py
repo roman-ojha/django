@@ -1,7 +1,7 @@
-# from django.urls import path
-# from . import views
+from django.urls import path
+from . import views
 
-# urlpatterns = [
-#     path('learndj/', views.learn_django),
-#     path('learnpy/', views.learn_python)
-# ]
+urlpatterns = [
+    path('dj/', views.learn_django),
+    path('py/', views.learn_python)
+]
