@@ -1,1 +1,1 @@
-*) URL Dispatcher
+=> here we used 'views.py' & 'urls.py' file
