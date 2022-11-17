@@ -3,4 +3,4 @@
         1. Function Based View
         2. Class Based View
 
-=> we will 
+=> here we used 'views.py' & 'urls.py' file
