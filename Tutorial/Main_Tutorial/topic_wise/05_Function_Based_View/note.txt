@@ -2,3 +2,5 @@
     -> we can make view using two way:
         1. Function Based View
         2. Class Based View
+
+=> we will 
