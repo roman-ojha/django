@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Learn Django</title>
+  </head>
+  <body>
+    <h1>
+      {% comment %} Variable {% endcomment %}
+      Learn {{cname}} <br />
+      Duration: {{duration}} <br />
+      Total Seats: {{seats}} <br/>
+    
+      {% comment %} Filters: {% endcomment %}
+
+      {% comment %} 'upper' into uppercase {% endcomment %}
+      Learn {{cname | upper}} <br />
+
+      Learn {{"Razz roman ojha" | truncatewords:2}} <br />
+      {% comment %} Output: Razz roman ... {% endcomment %}
+
+      {% comment %} Multiple Filter {% endcomment %}
+      Learn {{"Razz roman ojha" | upper | truncatewords:2}} <br />
+
+      {% comment %} capfirst: {% endcomment %}
+      Learn {{cname | capfirst}} <br />
+      {% comment %} Output: Learn Django {% endcomment %}
+
+      {% comment %} default {% endcomment %}
+      Learn {{random | default:"Null"}} <br />
+      {% comment %} Output: Learn Null {% endcomment %}
+
+      {% comment %} length {% endcomment %}
+      Learn {{cname | length}} <br />
+      {% comment %} Output: Learn 6 {% endcomment %}
+
+      {% comment %} lower {% endcomment %}
+      Learn {{"DJANGO" | lower}} <br />
+      {% comment %} Output: Learn django {% endcomment %}
+
+      {% comment %} Slice {% endcomment %}
+      {{cname | slice:'2'}} <br />
+      {% comment %} Output: dj {% endcomment %}
+
+      {% comment %} truncatechars {% endcomment %}
+      {{cname | truncatechars:3}} <br />
+      {% comment %} Output: dj... {% endcomment %}
+
+      {% comment %} date: {% endcomment %}
+
+    </h1>
+  </body>
+</html>
