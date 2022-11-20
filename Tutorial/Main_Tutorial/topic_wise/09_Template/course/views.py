@@ -4,8 +4,8 @@ from django.http import HttpResponse
 
 
 def learn_django(request):
-    return HttpResponse("<h1> Learn Django </h1>")
+    return render(request, 'coursedj.html')
 
 
 def learn_python(request):
-    return HttpResponse("<h1> Learn Python </h1>")
+    return render(request, 'coursepy.html')
