@@ -7,6 +7,11 @@
     <title>Learn Django</title>
   </head>
   <body>
-    <h1>Learn Django</h1>
+    {% comment %} can use 'upper' keword to change value into upper case {% endcomment %}
+    <h1>
+      Learn {{cname | upper}} <br />
+      Duration: {{duration}} <br />
+      Total Seats: {{seats}}
+    </h1>
   </body>
 </html>

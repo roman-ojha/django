@@ -3,8 +3,10 @@ from django.http import HttpResponse
 
 
 def fees_django(request):
-    return render(request, 'fees/django.html')
+    price = {'price': 400}
+    return render(request, 'fees/django.html', context=price)
 
 
 def fees_python(request):
-    return render(request, 'fees/python.html')
+    price = {'price': 300}
+    return render(request, 'fees/python.html', context=price)
