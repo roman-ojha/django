@@ -1,10 +1,12 @@
 from django.shortcuts import render
-
 from django.http import HttpResponse
+from datetime import datetime
 
 
 def learn_django(request):
-    data = {'cname': 'django', 'duration': "4 Months", "seats": 18}
+    # passing date for date & time filter
+    date = datetime.now()
+    data = {'cname': 'django', 'duration': "4 Months", "seats": 18, 'date': date}
     return render(request, 'course/index.html', context=data)
 
 

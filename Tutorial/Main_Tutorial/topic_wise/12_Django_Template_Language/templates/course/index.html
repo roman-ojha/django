@@ -49,7 +49,16 @@
       {% comment %} Output: dj... {% endcomment %}
 
       {% comment %} date: {% endcomment %}
+      {% comment %} Get month: {% endcomment %}
+      {{date | date:"M"}} <br/>
 
+      {% comment %} Day {% endcomment %}
+      {{date | date:"D"}} <br/>
+      {{date | date:"D d M Y"}} <br/>
+
+      {% comment %} Predefine date & time format {% endcomment %}
+      {{date | date:"SHORT_DATE_FORMAT"}} <br/>
+      {{date | time:"TIME_FORMAT"}} <br/>
     </h1>
   </body>
 </html>
