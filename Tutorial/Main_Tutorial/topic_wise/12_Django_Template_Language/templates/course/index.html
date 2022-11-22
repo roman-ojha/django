@@ -59,6 +59,30 @@
       {% comment %} Predefine date & time format {% endcomment %}
       {{date | date:"SHORT_DATE_FORMAT"}} <br/>
       {{date | time:"TIME_FORMAT"}} <br/>
+
+      {% comment %} floatforamt {% endcomment %}
+      {{price | floatformat}} <br/>
+      {{price | floatformat:3}} <br/>
+      {{price | floatformat:-3}} <br/>
+      {{price | floatformat:0}} <br/>
+
+      {% comment %} if Tag {% endcomment %}
+      {% if cname %}
+        <p>cname exist </p>
+      {% endif %}
+      {% if price >= 150 %} <p>price is greater then 100</p> {% endif %}
+      {% if seats is 19 %} <p>seat is 19</p> {% endif %}
+      {% if seats is 19 or price >= 30 %} <p>seat and price </p> {% endif %}
+      {% if cname|length > 4 %}cname is greater then 4{% endif %}
+
+      {% comment %} if else elif {% endcomment %}
+      {% if price >= 150 %}
+      <p>price is greater then 150</p>
+      {% elif price <= 100 %}
+      <p>price is less then 100</p>
+      {% else %}
+      <p>price is less then 150</p>
+      {% endif %}
     </h1>
   </body>
 </html>
