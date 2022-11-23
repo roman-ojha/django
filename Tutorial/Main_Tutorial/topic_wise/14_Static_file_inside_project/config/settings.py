@@ -18,7 +18,6 @@ TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
 
 
 # Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
