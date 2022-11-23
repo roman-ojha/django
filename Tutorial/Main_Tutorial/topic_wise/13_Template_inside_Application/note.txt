@@ -1,0 +1,13 @@
+=> NOTE: we add html template inside application name inside application folder EX:
+    course/template/course/<name>.html
+    -> because to avoid name collision because django search for all the template from all the application if it find's the same name template inside 'templates' folder then that will create the ambiguity problem
+
+
+*) Template inside + outside applications
+    -> in this case all the template that are inside the application will get render by the same application where template belongs to
+    -> but we will create the views.py file to render project level template files inside project folder
+
+
+*) Another approach to render project related template files:
+    -> create new application ex: 'core' that will handle project related stuff
+    -> means that all the project related 'views.py' file will go inside 'core' folder
