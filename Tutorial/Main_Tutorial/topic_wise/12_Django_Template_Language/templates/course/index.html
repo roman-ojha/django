@@ -83,6 +83,52 @@
       {% else %}
       <p>price is less then 150</p>
       {% endif %}
+
+      {% comment %} For loop tag {% endcomment %}
+      {% for student in students.names %}
+      {{ student }}
+      {% endfor %}
+      {% for student in students.names reversed %}
+      {{ student }}
+      {% comment %} if DTL didn't find the required 'students' dictionary or list then we can use 'empty' tag to show another message {% endcomment %}
+      {% empty %}
+      <h3>Didn't find the student dictionary</h3>
+      {% endfor %}
+
+      <br/>
+      {% comment %} for with key value 'need to use <item> keyword to access stu' {% endcomment %}
+      {% for key, value in stu.items %}
+      <br/> {{key}}  
+        {% for k, v in value.items %}
+       <br/>  {{forloop.parentloop.counter}}{{k}} == {{v}}
+      {% endfor %}
+      {% endfor %}
+      <br/>
+
+      {% comment %} predefined forloop variable {% endcomment %}
+      {% for student in students.names %}
+      {{ forloop.counter }}
+      {{ forloop.counter0 }}
+      {{ forloop.first }}
+      {{ forloop.last }}
+      {{ student }}
+      {% endfor %}
+      <br/>
+
+      {% comment %} accessing nested dictionary {% endcomment %}
+      {{ stu }}
+      {{ stu.stu1 }}
+      {{ stu.stu1.name }}
+      {{ stu.stu1.roll}}
+
+      {% comment %} 
+      Todo tag to learn:
+      1. include
+      2. url
+      3. static
+      4. load
+      5. extends
+      {% endcomment %}
     </h1>
   </body>
 </html>
