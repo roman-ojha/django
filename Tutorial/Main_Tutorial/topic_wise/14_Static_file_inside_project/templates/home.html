@@ -1,9 +1,13 @@
 <!DOCTYPE html>
+{% comment %} to access static tag first we have to load static tab {% endcomment %}
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% comment %} loading css static files {% endcomment %}
+    <link rel="stylesheet" href="{% static 'style/style.css' %}">
     <title>Home</title>
 </head>
 <body>
@@ -29,5 +33,14 @@
             </li>
         </ul>
     </ol>
+
+    {% comment %} access to static files for that use static tag {% endcomment %}
+    {% comment %} static '<file_path_inside_static_folder>' {% endcomment %}
+    <img src="{% static 'assets/images/01.jpg' %}" alt="01">
+
+    {% comment %} another way to use static files {% endcomment %}
+    <img src="{% get_static_prefix %}assets/images/02.jpg" alt="01">
+
+    <script src="{% static 'js/script.js' %}"></script>
 </body>
 </html>

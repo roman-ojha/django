@@ -16,6 +16,9 @@ ALLOWED_HOSTS = []
 # Template Base Directory
 TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
 
+# Static directory
+STATIC_DIR = os.path.join(BASE_DIR, 'static')
+
 
 # Application definition
 INSTALLED_APPS = [
@@ -105,8 +108,9 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
-
 STATIC_URL = 'static/'
+# we will give list of the static files directory where all the static file exist
+STATICFILES_DIRS = [STATIC_DIR]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
