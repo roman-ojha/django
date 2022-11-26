@@ -1,0 +1,1 @@
+=> to get access to the table create inside the django model into admin interface we have to register the model
