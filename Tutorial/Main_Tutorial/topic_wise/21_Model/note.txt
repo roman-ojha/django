@@ -1,0 +1,3 @@
+=> to see the '.sqlite3' file we can use the application for that we will download app from:
+    -> https://sqlitebrowser.org/dl/
+    -> https://sqlitebrowser.org/dl/#nightly-builds
