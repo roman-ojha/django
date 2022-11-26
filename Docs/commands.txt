@@ -10,3 +10,5 @@
 -> python manage.py shell (run django shell)
 -> python manage.py createsuperuser (to create superuser)
 -> python manage.py changepassword <username>
+-> python manage.py sqlmigrate <app_name> <migration_file_name> (to see all sql statement contain on that file)
+-> python manage.py showmigrations (to see all migrations)
