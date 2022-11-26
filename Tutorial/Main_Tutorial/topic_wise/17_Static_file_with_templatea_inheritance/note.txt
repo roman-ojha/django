@@ -1,0 +1,5 @@
+=> first we will create the base template inside 'core/templates/core/base.html'
+=> after that we will inherit it to other template
+=> after that we will add static file inside base template
+
+=> we will also override the static file inside course template

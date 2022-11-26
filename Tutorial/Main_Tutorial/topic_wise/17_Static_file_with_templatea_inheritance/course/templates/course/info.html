@@ -1,10 +1,14 @@
 {% extends 'core/base.html' %}
-{% comment %} using base template inside application template {% endcomment %}
+{% load static %}
 
-{% comment %} overriding title block {% endcomment %}
 {% block title %} Django {% endblock title %}
 
-{% comment %} overriding content block {% endcomment %}
+{% comment %} overriding and adding base super css static file {% endcomment %}
+{% block css %}
+{{block.super}}
+<link rel="stylesheet" href="{% static 'course/css/style.css' %}">
+{% endblock css %}
+
 {% block content %} 
 <h1>Learn django</h1>
 {% endblock content %}
