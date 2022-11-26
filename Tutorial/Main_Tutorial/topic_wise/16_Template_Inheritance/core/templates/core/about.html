@@ -1,19 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About</title>
-</head>
-<body>
-    <nav>
-        <ul>
-            <li>Home</li>
-            <li>About</li>
-            <li>Django Course</li>
-        </ul>
-    </nav>
-    <h1>About page</h1> 
-</body>
-</html>
+{% extends 'core/base.html' %}
+{% comment %} using base template {% endcomment %}
+
+{% comment %} overriding title block {% endcomment %}
+{% comment %} using 'super' to get parent block value {% endcomment %}
+{% block title %} {{block.super}} About {% endblock title %}
+
+{% comment %} overriding content block {% endcomment %}
+{% block content %} 
+<h1>About page</h1>
+{% endblock content %}
