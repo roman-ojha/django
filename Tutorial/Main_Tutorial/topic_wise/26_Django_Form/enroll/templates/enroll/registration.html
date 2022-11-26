@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration</title>
+</head>
+<body>
+    <form action="" method="GET">
+        <table>
+            {% comment %} accessing 'form' inside template {% endcomment %}
+            {{form}}
+        </table>
+        <input type="submit" value="submit">
+    </form>
+
+    {% comment %} different way to display form with use of different tag format {% endcomment %}
+    {{form.as_table}}
+    {{form.as_p}}
+    {{form.as_ul}}
+
+    {% comment %} render single input field respect to given field name {% endcomment %}
+    {% comment %} form.<name_of_field> {% endcomment %}
+    {{form.name}}
+    {{form.email}}
+</body>
+</html>
