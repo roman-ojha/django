@@ -1,0 +1,11 @@
+{% extends 'core/base.html' %}
+{% comment %} using base template {% endcomment %}
+
+{% comment %} overriding title block {% endcomment %}
+{% comment %} using 'super' to get parent block value {% endcomment %}
+{% block title %} {{block.super}} About {% endblock title %}
+
+{% comment %} overriding content block {% endcomment %}
+{% block content %} 
+<h1>About page</h1>
+{% endblock content %}

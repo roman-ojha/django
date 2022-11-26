@@ -1,0 +1,23 @@
+{% comment %} defining base template which will get inherited to other template {% endcomment %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% comment %} defining 'title' block with default value {% endcomment %}
+    <title>{% block title %}Other{% endblock title %}</title>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li>Home</li>
+            <li>About</li>
+            <li>Django Course</li>
+        </ul>
+    </nav>
+    {% block content %} {% endblock content %}
+    {% block content2 %} {% endblock content2 %}
+    {% block content3 %}{% endblock content3 %}
+</body>
+</html>
