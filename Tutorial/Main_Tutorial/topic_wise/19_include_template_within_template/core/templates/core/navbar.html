@@ -1,0 +1,15 @@
+<nav>
+    <ol>
+        <li>
+            <a href="/">Home</a>
+        </li>
+        <li>
+            <a href="/about">About</a>
+            <a href="{% url 'about' %}">About</a>
+        </li>
+        <li>
+            {% url 'django_course' as dc %}
+            <a href="{{dc}}">Django Course</a>
+        </li>
+    </ol>
+</nav>

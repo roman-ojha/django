@@ -4,5 +4,12 @@
 
 {% block content %} 
 <h1>Home page</h1>
-<a href="{{about_url}}">About</a>
+{% comment %} including template inside template using 'include' tag {% endcomment %}
+{% include 'core/topcourse.html' %}
+
+{% comment %} including template with passing context {% endcomment %}
+{% include 'core/topcourse.html' with p="PHP" %}
+
+{% comment %} if you don't want to pass the context that is being passed from 'views.py' function then we will use 'only' keyword {% endcomment %}
+{% include 'core/topcourse.html' with p="PHP" only %}
 {% endblock content %}

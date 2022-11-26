@@ -13,27 +13,9 @@
     {% endblock css %}
 </head>
 <body>
-    <nav>
-        <ol>
-            <li>
-                {% comment %} one way to navigate to pages {% endcomment %}
-                <a href="/">Home</a>
-            </li>
-            <li>
-                {% comment %} NOTE: we should not use context value that is being pass from views.py to base template {% endcomment %}
-                <a href="/about">About</a>
-                {% comment %} using url tag {% endcomment %}
-                <a href="{% url 'about' %}">About</a>
-            </li>
-            <li>
-                {% comment %} using url tag for the application level url {% endcomment %}
+    {% comment %} including template inside template using 'include' tag {% endcomment %}
+    {% include 'core/navbar.html' %}
 
-                {% comment %} creating variable from url tag {% endcomment %}
-                {% url 'django_course' as dc %}
-                <a href="{{dc}}">Django Course</a>
-            </li>
-        </ol>
-    </nav>
     {% block content %} {% endblock content %}
     {% block content2 %} {% endblock content2 %}
     {% block content3 %}{% endblock content3 %}

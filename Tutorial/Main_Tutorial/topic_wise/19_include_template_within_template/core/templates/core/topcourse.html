@@ -1,0 +1,14 @@
+<h2>Top Course</h2>
+<ul>
+    <li>Python</li>
+    <li>Javascript</li>
+    <li>Java</li>
+    {% if p %}
+    <li>{{p}}</li>
+    {% endif %}
+
+    {% comment %} passed context from './views.py/home()' {% endcomment %}
+    {% for course in top_course_template %}
+    <li>{{course}}</li>
+    {% endfor %}
+</ul>

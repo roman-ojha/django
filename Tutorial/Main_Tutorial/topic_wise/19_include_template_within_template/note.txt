@@ -1,0 +1,1 @@
+=> here we had use './core/templates/core' 'home.html' & 'base.html' & 'navbar.html' & 'topcourse.html' & './core/views.py' files
