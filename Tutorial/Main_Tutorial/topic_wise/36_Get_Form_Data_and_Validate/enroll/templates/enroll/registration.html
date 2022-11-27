@@ -8,9 +8,15 @@
 </head>
 <body>
     <form action="" method="POST">
-        {% comment %} if we use POST method we have to use CSRF {% endcomment %}
         {% csrf_token %}
-        {% comment %} <input type="hidden" name="csrfmiddlewaretoken" value="H3wdssF3jcjnRsLwLGse6k8HvL9N9hwMNWcS7UkB2ur6qcuCp91oCLmVuO96kykN"> {% endcomment %}
+        {{form.as_p}}
+        <input type="submit" value="Submit">
+    </form>
+
+    {% comment %} wihout html5 form validation {% endcomment %}
+    {% comment %} in that case django will validate the data {% endcomment %}
+    <form action="" method="POST" novalidate>
+        {% csrf_token %}
         {{form.as_p}}
         <input type="submit" value="Submit">
     </form>
