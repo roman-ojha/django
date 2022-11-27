@@ -1,0 +1,1 @@
+=> used files are 'views.py', 'forms.py', 'registration.html', 'fail.html' and 'success.html'
