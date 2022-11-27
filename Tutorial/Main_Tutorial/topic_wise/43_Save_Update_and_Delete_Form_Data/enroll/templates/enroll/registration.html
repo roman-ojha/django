@@ -5,66 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registration</title>
-    <style>
-        {% comment %} styling error {% endcomment %}
-        .errorlist{
-            color:white;
-            font-size:10px;
-            margin:0;
-            padding:5px;
-            background-color:red;
-            border-radius: 5px;
-        }
-        .field-group{
-            margin:10px;
-        }
-    </style>
 </head>
 <body>
     <form action="" method="POST" novalidate>
         {% csrf_token %}
-        {{form.non_field_errors}}
-        {% for field in form %}
-            <div class="field-group">
-                {{field.label_tag}}
-                {{field}}
-                {% comment %} striptag will remove the tag from given tag {% endcomment %}
-                {% if field.errors %} 
-                    <span class="errorlist">{{field.errors | striptags}}</span>
-                {% endif %}
-            </div>
-
-            {% comment %} Output:
-            <div>
-                <label for="id_name">Name:</label>
-                <input type="text" name="name" required id="id_name">
-                <span class="errorlist">Enter your name</span>
-            </div>
-            {% endcomment %}
-        {% endfor %}
-        <input type="submit" value="Submit">
-    </form>
-    <br/>
-
-    <form action="" method="POST" novalidate>
-        {% csrf_token %}
-        {{form.non_field_errors}}
-        {% for field in form %}
-            <div class="field-group">
-                {{field.label_tag}}
-                {{field}}
-                {% comment %} for loop for multiple error {% endcomment %}
-                {% for error in field.errors %}
-                    <span class="errorlist">{{error}}</span>
-                {% endfor %}
-            </div>
-        {% endfor %}
-        <input type="submit" value="Submit">
-    </form>
-
-    <form action="" method="POST" novalidate>
-        {% csrf_token %}
-        {{form}}
+        {{form.as_p}}
         <input type="submit" value="Submit">
     </form>
 </body>
