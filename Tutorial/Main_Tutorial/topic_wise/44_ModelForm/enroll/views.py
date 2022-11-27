@@ -1,27 +1,36 @@
 from django.shortcuts import render
-from .forms import StudentRegistration
+from .forms import UserRegistration
 from .models import User
 
 
 def register(request):
     if request.method == "POST":
-        form = StudentRegistration(request.POST)
+        # to update the data we will first get the data
+        # so updating the data that have id = 2
+        pi = User.objects.get(pk=2)
+
+        # by passing the instance into the ModelForm it will bind those value that user enter with the model and now we can update that data
+        form = UserRegistration(request.POST, instance=pi)
+
+        # on update
+        operation = 'update'
+
+        # on save
+        # operation = 'save'
+
         if form.is_valid():
-            name = form.cleaned_data['name']
-            email = form.cleaned_data['email']
-            password = form.cleaned_data['password']
+            if operation is 'save':
+                # saving the data
+                print(form.cleaned_data)
+                name = form.cleaned_data['name']
+                email = form.cleaned_data['email']
+                password = form.cleaned_data['password']
 
-            # creating a new user object
-            reg = User(name=name, email=email, password=password)
-
-            # if we will pass the id while creating the user then it will update the data
-            reg = User(id=3, name=name, email=email, password=password)
-            # saving the user
-            reg.save()
-
-            # Delete Data
-            reg = User(id=3)
-            reg.delete()
+                reg = User(name=name, email=email, password=password)
+                reg.save()
+            else:
+                # updating the data
+                form.save()
     else:
-        form = StudentRegistration()
+        form = UserRegistration()
     return render(request, 'enroll/registration.html', {'form': form})
