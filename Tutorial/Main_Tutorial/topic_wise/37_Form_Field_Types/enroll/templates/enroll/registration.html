@@ -7,7 +7,7 @@
     <title>Registration</title>
 </head>
 <body>
-    <form action="" method="POST">
+    <form action="" method="POST" novalidate>
         {% csrf_token %}
         {{form.as_p}}
         <input type="submit" value="Submit">
