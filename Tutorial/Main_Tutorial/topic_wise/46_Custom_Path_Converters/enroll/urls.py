@@ -1,19 +1,11 @@
-from django.urls import path
-from . import views
+from django.urls import path, register_converter
+from . import views, converters
+
+# now we will register the converter that we created
+register_converter(converters.FourDigitYearConverter, 'yyyy')
+# register_converter(<converter_class>,'<path_converter_name>')
 
 urlpatterns = [
-    path('', views.home, name='enroll'),
-    # 'id' will get pass into views function as keyword argument
-    path('student/<id>/', views.show_details, name='detail'),
-
-    # converting 'id' to int
-    path('student/int/<int:id>/', views.show_details_int, name='int-detail'),
-
-    # multiple dynamic url
-    path('student/int/<int:id>/<int:sub_id>/',
-         views.show_sub_details_int, name='int-sub-detail'),
-
-    # passing kwargs
-    path('student/',
-         views.kwargs_view, kwargs={'id': 5, 'name': "Jack"}, name="student")
+    # now accessing the path converter that we created
+    path('session/<yyyy:year>/', views.show_details, name='detail'),
 ]

@@ -1,2 +1,1 @@
--> regex = '[0-9]{4}'
-    -> 0-9 mathematical digit, and of 4 digit
+=> used files are 'urls.py', 'converters.py', 'views.py', 'show.html'
