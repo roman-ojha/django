@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SignUp</title>
+</head>
+<body>
+    {% comment %} Creating form {% endcomment %}
+    <form action="" method="POST" novalidate>
+        {% csrf_token %}
+        {% for fm in form %}
+            <div>
+                {{fm.label_tag}}
+                {{fm}}
+                {{fm.errors|striptags}}
+            </div>
+        {% endfor %}
+        <input type="submit" value="SignUp">
+    </form>
+
+    {% comment %} Showing message after use register {% endcomment %}
+    {% if messages %}
+        {% for message in messages %}
+            <h1 {% if message.tags %} class="{{message.tags}}" {% endif %}>{{message}}</h1>
+        {% endfor %}
+    {% endif %}
+</body>
+</html>
