@@ -1,30 +1,55 @@
-from django.shortcuts import render
-# now here we will import the form that django auth provide us and we will use it for user registration
-from django.contrib.auth.forms import UserCreationForm
-
-# using inherited form from 'UserCreationForm'
+from django.shortcuts import render, HttpResponseRedirect
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from .forms import SighUpForm
-
 from django.contrib import messages
+
+# importing required function for this tutorial
+from django.contrib.auth import authenticate, login, logout
 
 
 def sign_up(request):
-    # this process had already done in before tutorial
     if request.method == "POST":
-        # 'UserCreationForm' contain the form that is required to create the new user
-        form = UserCreationForm(request.POST)
-
-        # But by default this form only consist of 'username', 'password', 'conform password'
-        # but if we want to add extra field into it then we will create the new Form class that will inherited from 'UserCreationForm'
         form = SighUpForm(request.POST)
 
         if form.is_valid():
-            # if user input is valid then we will save the user into database
             form.save()
 
-            # after we created the user we will add the new message using django message framework
             messages.success(request, "Register User Successfully")
     else:
-        # form = UserCreationForm()
         form = SighUpForm()
     return render(request, 'enroll/signup.html', {'form': form})
+
+
+def sign_in(request):
+    if request.method == 'POST':
+        # django 'AuthenticationForm' provide us the form to authenticate the user for login
+        # AuthenticationForm(<request>, <data>)
+        form = AuthenticationForm(request=request, data=request.POST)
+        if form.is_valid():
+            # after validate we will get the cleaned data
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+
+            # now we will authenticate the user using 'username' & 'password'
+            # if it get authenticate then we will get the user
+            print(username, password)
+            user = authenticate(username=username, password=password)
+            if user is not None:
+                # if user exist then we will login
+                login(request, user)
+                # after we login we will redirect to profile page
+                return HttpResponseRedirect('/enroll/profile/')
+            else:
+                # if user doesn't exist on database then we will create an error message to show to login page
+                form = AuthenticationForm()
+                messages.error(request, "Login fail")
+        else:
+            messages.error(request, "Authentication failed")
+    else:
+        form = AuthenticationForm()
+    return render(request, 'enroll/login.html', {'form': form})
+
+
+# for user profile page
+def profile(request):
+    return render(request, 'enroll/profile.html')
