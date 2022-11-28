@@ -1,0 +1,3 @@
+=> we will use message framework to display the message to the user when user register successfully
+
+=> used files are 'forms.py', 'urls.py', 'views.py', 'admin.py', 'models.py', 'registration.html'

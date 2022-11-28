@@ -5,8 +5,39 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        {% comment %} styling the 'success' tag message {% endcomment %}
+        .success{
+            background-color:green;
+            color:white;
+            border-radius:5px;
+            padding:5px
+        }
+
+        {% comment %} for info {% endcomment %}
+        .info{
+            background-color:brown;
+            color:white;
+            border-radius:5px;
+            padding:5px
+        }
+    </style>
 </head>
 <body>
-    
+    <form action="" method="POST">
+        {% csrf_token %}
+        {{form.as_p}}
+        <input type="submit" value="Submit">
+    </form>
+
+    {% comment %} displaying the message that we get after we register {% endcomment %}
+
+    {% if messages %}
+        {% comment %} looping to all the messages {% endcomment %}
+        {% for message in messages %}
+            {% comment %} also we can get the message tag so that we can use it for css {% endcomment %}
+                <h3 {% if message.tags %} class='{{message.tags}}' {% endif %}>{{message}}</h3>
+        {% endfor %}
+    {% endif %}
 </body>
 </html>
