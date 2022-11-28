@@ -1,0 +1,1 @@
+=> used files are 'model.py', 'forms.py', 'views.py', 'urls.py', 'admin.py'
