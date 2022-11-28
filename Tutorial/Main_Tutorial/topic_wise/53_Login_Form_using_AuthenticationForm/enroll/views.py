@@ -21,6 +21,10 @@ def sign_up(request):
 
 
 def sign_in(request):
+    # if user is already logged in then we will redirect to profile page
+    if request.user.is_authenticated:
+        return HttpResponseRedirect('/enroll/profile')
+
     if request.method == 'POST':
         # django 'AuthenticationForm' provide us the form to authenticate the user for login
         # AuthenticationForm(<request>, <data>)
@@ -38,6 +42,7 @@ def sign_in(request):
                 # if user exist then we will login
                 login(request, user)
                 # after we login we will redirect to profile page
+                messages.success(request, "Logged in successfully")
                 return HttpResponseRedirect('/enroll/profile/')
             else:
                 # if user doesn't exist on database then we will create an error message to show to login page
@@ -52,4 +57,19 @@ def sign_in(request):
 
 # for user profile page
 def profile(request):
-    return render(request, 'enroll/profile.html')
+    # 'profile' page can only be able to access by the user
+    # so we will check is the requested user is authenticated or no
+    if request.user.is_authenticated:
+        # now here we can access the user data
+        name = request.user
+        return render(request, 'enroll/profile.html', {'name': name})
+    else:
+        messages.error(
+            request, "You are not authenticated, Please login first")
+        return HttpResponseRedirect('/enroll/login')
+
+
+def user_logout(request):
+    # logging out user
+    logout(request)
+    return HttpResponseRedirect('/enroll/login/')
