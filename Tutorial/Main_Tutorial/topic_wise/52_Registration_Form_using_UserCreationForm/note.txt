@@ -1,0 +1,15 @@
+=> we look how we can manage the user from '/admin' django admin site but now we will learn to do using code
+=> so now we will learn how we can create a user registration form from given django auth app
+
+=> if we will go to 'venv/lib/django/auth/'
+    -> 'forms.py'
+        -> inside 'forms.py' we can find the user auth related forms that Django provide
+        -> now we will use these forms to authenticate or to authorize the user
+    -> 'models.py'
+        -> inside it we can find the models that django auth provide to store the user into database
+    -> 'admin.py'
+        -> inside it we can find that django auth is registering the model that it provide
+    -> 'urls.py'
+        -> inside it we can find out the urls that django auth user to authenticate the user
+    -> 'views.py'
+        -> it contain all the class based views that urls uses
