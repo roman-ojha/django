@@ -1,0 +1,10 @@
+-> superuser:
+    username = roman
+    password = roman
+
+-> users:
+    username = razz
+    password = razzroman#123
+
+    username = harry
+    password = harryroman#123

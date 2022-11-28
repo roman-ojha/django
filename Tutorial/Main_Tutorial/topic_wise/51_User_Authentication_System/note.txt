@@ -1,0 +1,30 @@
+*) Steps:
+    -> python manage.py makemigration
+    -> python manage.py migrate
+
+1. Create Super Users
+-> python manage.py createsuperuser
+    -> if we will do that then it will store the user data into 'auth_user' table
+
+2. Change password
+    -> you can change the password of the user from '/admin' site
+
+3. Creating User:
+    -> for that you just have to add the user from '/admin' site
+    -> by default if we create the user then it will not have any permission and any authorization
+    -> staff status: 0
+    -> superuser: 0
+
+4. Permissions and Authorization
+    => if user is 'superuser' then it will automatically have all the user permissions
+    => 'staff status' user can login into /admin site
+        -> but by default 'staff status' don't have any permissions
+
+    => we can add and remove the permission of the user inside the '/admin' site
+
+5. Groups
+    -> we can create a group and add the user in that group
+    -> if group have some permission that user only don't have then also user will get those permission that group allow it to do
+
+
+=> NOTE: we can create our own permission and authorization
