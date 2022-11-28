@@ -13,3 +13,5 @@
         -> inside it we can find out the urls that django auth user to authenticate the user
     -> 'views.py'
         -> it contain all the class based views that urls uses
+
+=> used files are 'views.py', 'forms.py', 'urls.py', 'signup.html'
