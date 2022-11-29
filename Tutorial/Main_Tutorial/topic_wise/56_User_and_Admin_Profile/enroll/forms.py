@@ -18,11 +18,21 @@ class SighUpForm(UserCreationForm):
 
 
 class EditUserProfileForm(UserChangeForm):
-    # to not show change password we will set password to None
     password = None
 
     class Meta:
         model = User
         fields = ['username', 'first_name', 'last_name',
-                  'email', 'date_joined', 'last_login', 'is_active']
+                  'email', 'date_joined', 'last_login']
+        labels = {"email": "Email"}
+
+# we will create a new form for Admin User
+
+
+class EditAdminProfileForm(UserChangeForm):
+    password = None
+
+    class Meta:
+        model = User
+        fields = '__all__'
         labels = {"email": "Email"}

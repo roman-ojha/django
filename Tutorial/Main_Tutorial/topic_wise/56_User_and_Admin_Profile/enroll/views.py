@@ -2,9 +2,8 @@ from django.shortcuts import render, HttpResponseRedirect
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
 from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm
-
-# we will import the form that we create using 'UserChangeForm'
-from .forms import SighUpForm, EditUserProfileForm
+from .forms import SighUpForm, EditUserProfileForm, EditAdminProfileForm
+from django.contrib.auth.models import User
 
 
 def sign_up(request):
@@ -49,25 +48,57 @@ def sign_in(request):
 def profile(request):
     if request.user.is_authenticated:
         if request.method == 'POST':
-            # 'UserChangeForm' contain the form that will help to change the user info
-            # But we don't want every field that this form provide in that case we will change the Form by create our new form and inherit from this Form
-            # so we created the 'EditUserProfileForm' form that will contain the minimum form that is required for profile page
-
-            # if method is POST and user send the data to change then we will pass the data to form we well
-            form = EditUserProfileForm(request.POST, instance=request.user)
+            # we will check is the requested user is admin or normal user
+            # for that we will check is the requested user is superuser or not
+            if request.user.is_superuser:
+                # if user is superuser then we will create Admin form for POST request to validated
+                form = EditAdminProfileForm(
+                    request.POST, instance=request.user)
+                # so if user is Admin then we will also get the data of all the user and send it into the template
+                users = User.objects.all()
+            else:
+                form = EditUserProfileForm(request.POST, instance=request.user)
+                users = None
             if form.is_valid():
-                # if given form data is valid the we will save the changed data
                 form.save()
                 messages.success(request, "You profile get updated")
         else:
-            # for GET request we will just pass the user edit form
-            form = EditUserProfileForm(instance=request.user)
+            # we will check is the requested user is admin or normal user
+            # for that we will check is the requested user is superuser or not
+            if request.user.is_superuser:
+                # if user is superuser then we will create Admin form rather then normal user form
+                form = EditAdminProfileForm(instance=request.user)
+
+                # so if user is Admin then we will also get the data of all the user and send it into the template
+                users = User.objects.all()
+            else:
+                form = EditUserProfileForm(instance=request.user)
+                users = None
         name = request.user
-        return render(request, 'enroll/profile.html', {'name': name, 'form': form})
+        return render(request, 'enroll/profile.html', {'name': name, 'form': form, 'users': users})
     else:
         messages.error(
             request, "You are not authenticated, Please login first")
-        return HttpResponseRedirect('/enroll/login')
+        return HttpResponseRedirect('/enroll/login/')
+
+
+# Function to render specific user detail only Admin user can access this
+def user_detail(request, id):
+    if request.user.is_authenticated:
+        # only super user can get the user detail
+        if request.user.is_superuser:
+            # now we will get the user data
+            user = User.objects.get(pk=id)
+            # and also we will render the form
+            # and we know Admin form have access to every field so we will render the Admin form rather
+            form = EditAdminProfileForm(instance=user)
+            return render(request, 'enroll/userdetail.html', {'form': form, 'user': user})
+        else:
+            messages.warning(request, "Access Denied")
+            return HttpResponseRedirect('/enroll/profile/')
+    else:
+        messages.warning(request, "You are not authenticated")
+        return HttpResponseRedirect('/enroll/login/')
 
 
 def user_logout(request):

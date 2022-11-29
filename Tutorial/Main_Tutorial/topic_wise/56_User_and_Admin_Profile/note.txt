@@ -1,1 +1,2 @@
 => here we will create a different Profile for User and different profile for Admin
+=> used file are 'views.py', 'profile.html', 'urls.py', 'userdetail.html', 'forms.py'
