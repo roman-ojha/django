@@ -17,7 +17,23 @@
     <a href="{% url 'logout' %}">Logout</a>
     <br/>
     <a href="{% url 'changepass' %}">Change Password</a>
-    <br/>
-    <a href="{% url 'changepasswoold' %}">Change Password Without Password</a>
+
+    <h1>Change You Info</h1>
+    <form action="" method="post">
+        {% if form.non_field_errors %}
+            {% for error in form.non_field_errors %}
+            <h4>{{error}}</h4> 
+            {% endfor %}
+        {% endif %}
+        {% csrf_token %}
+        {% for fm in form %}
+            <div>
+                {{fm.label_tag}}
+                {{fm}}
+                {{fm.errors|striptags}}
+            </div>
+        {% endfor %}
+        <input type="submit" value="Save">
+    </form>
 </body>
 </html>

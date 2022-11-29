@@ -1,10 +1,10 @@
 from django.shortcuts import render, HttpResponseRedirect
-from .forms import SighUpForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
+from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm
 
-# django provide use the form to change the password so we will import it
-from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm, SetPasswordForm
+# we will import the form that we create using 'UserChangeForm'
+from .forms import SighUpForm, EditUserProfileForm
 
 
 def sign_up(request):
@@ -48,8 +48,22 @@ def sign_in(request):
 
 def profile(request):
     if request.user.is_authenticated:
+        if request.method == 'POST':
+            # 'UserChangeForm' contain the form that will help to change the user info
+            # But we don't want every field that this form provide in that case we will change the Form by create our new form and inherit from this Form
+            # so we created the 'EditUserProfileForm' form that will contain the minimum form that is required for profile page
+
+            # if method is POST and user send the data to change then we will pass the data to form we well
+            form = EditUserProfileForm(request.POST, instance=request.user)
+            if form.is_valid():
+                # if given form data is valid the we will save the changed data
+                form.save()
+                messages.success(request, "You profile get updated")
+        else:
+            # for GET request we will just pass the user edit form
+            form = EditUserProfileForm(instance=request.user)
         name = request.user
-        return render(request, 'enroll/profile.html', {'name': name})
+        return render(request, 'enroll/profile.html', {'name': name, 'form': form})
     else:
         messages.error(
             request, "You are not authenticated, Please login first")
@@ -61,43 +75,17 @@ def user_logout(request):
     return HttpResponseRedirect('/enroll/login/')
 
 
-# view to change the user password which contain Old password
 def user_change_pass(request):
-    # this view route can only be access by the authenticated user, those user that is already logged in
     if not request.user.is_authenticated:
         messages.warning(request, "Access Denied, You are not authenticated")
         return HttpResponseRedirect('/enroll/login/')
     if request.method == "POST":
-        # 'PasswordChangeForm' will provide the form to change the password which will take 'user' as an argument
-        # if it is POST method then we will also provide the data that we get
         form = PasswordChangeForm(user=request.user, data=request.POST)
         if form.is_valid():
-            # after field get validated to save the password change we can save the form
             form.save()
-            # after user change the password user session will not get authenticated so user can't login
-            # so to update the session after user changed the password we will do this:
             update_session_auth_hash(request, form.user)
-
             messages.success(request, "Password Changed Successfully")
-
             return HttpResponseRedirect('/enroll/profile/')
     else:
         form = PasswordChangeForm(user=request.user)
-    return render(request, 'enroll/change_password.html', {'form': form})
-
-
-# View to change the user password which out required Old password
-def change_pass_with_out_old(request):
-    if not request.user.is_authenticated:
-        messages.warning(request, "Access Denied, You are not authenticated")
-        return HttpResponseRedirect('/enroll/login/')
-    if request.method == "POST":
-        form = SetPasswordForm(user=request.user, data=request.POST)
-        if form.is_valid():
-            form.save()
-            update_session_auth_hash(request, form.user)
-            messages.success(request, "Password Changed Successfully")
-            return HttpResponseRedirect('/enroll/profile/')
-    else:
-        form = SetPasswordForm(user=request.user)
     return render(request, 'enroll/change_password.html', {'form': form})

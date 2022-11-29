@@ -8,5 +8,6 @@ urlpatterns = [
     path('logout/', views.user_logout, name='logout'),
     # change password with required Old password
     path('changepass/', views.user_change_pass, name='changepass'),
+    # change password with out required Old password
     path('changepass1/', views.change_pass_with_out_old, name='changepasswoold')
 ]
