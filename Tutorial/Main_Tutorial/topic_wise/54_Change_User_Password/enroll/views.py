@@ -1,10 +1,10 @@
 from django.shortcuts import render, HttpResponseRedirect
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from .forms import SighUpForm
 from django.contrib import messages
+from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
 
-# importing required function for this tutorial
-from django.contrib.auth import authenticate, login, logout
+# django provide use the form to change the password so we will import it
+from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm, SetPasswordForm
 
 
 def sign_up(request):
@@ -21,31 +21,22 @@ def sign_up(request):
 
 
 def sign_in(request):
-    # if user is already logged in then we will redirect to profile page
     if request.user.is_authenticated:
         return HttpResponseRedirect('/enroll/profile')
 
     if request.method == 'POST':
-        # django 'AuthenticationForm' provide us the form to authenticate the user for login
-        # AuthenticationForm(<request>, <data>)
         form = AuthenticationForm(request=request, data=request.POST)
         if form.is_valid():
-            # after validate we will get the cleaned data
             username = form.cleaned_data['username']
             password = form.cleaned_data['password']
 
-            # now we will authenticate the user using 'username' & 'password'
-            # if it get authenticate then we will get the user
             print(username, password)
             user = authenticate(username=username, password=password)
             if user is not None:
-                # if user exist then we will login
                 login(request, user)
-                # after we login we will redirect to profile page
                 messages.success(request, "Logged in successfully")
                 return HttpResponseRedirect('/enroll/profile/')
             else:
-                # if user doesn't exist on database then we will create an error message to show to login page
                 form = AuthenticationForm()
                 messages.error(request, "Login fail")
         else:
@@ -55,12 +46,8 @@ def sign_in(request):
     return render(request, 'enroll/login.html', {'form': form})
 
 
-# for user profile page
 def profile(request):
-    # 'profile' page can only be able to access by the user
-    # so we will check is the requested user is authenticated or no
     if request.user.is_authenticated:
-        # now here we can access the user data
         name = request.user
         return render(request, 'enroll/profile.html', {'name': name})
     else:
@@ -70,6 +57,47 @@ def profile(request):
 
 
 def user_logout(request):
-    # logging out user
     logout(request)
     return HttpResponseRedirect('/enroll/login/')
+
+
+# view to change the user password which contain Old password
+def user_change_pass(request):
+    # this view route can only be access by the authenticated user, those user that is already logged in
+    if not request.user.is_authenticated:
+        messages.warning(request, "Access Denied, You are not authenticated")
+        return HttpResponseRedirect('/enroll/login/')
+    if request.method == "POST":
+        # 'PasswordChangeForm' will provide the form to change the password which will take 'user' as an argument
+        # if it is POST method then we will also provide the data that we get
+        form = PasswordChangeForm(user=request.user, data=request.POST)
+        if form.is_valid():
+            # after field get validated to save the password change we can save the form
+            form.save()
+            # after user change the password user session will not get authenticated so user can't login
+            # so to update the session after user changed the password we will do this:
+            update_session_auth_hash(request, form.user)
+
+            messages.success(request, "Password Changed Successfully")
+
+            return HttpResponseRedirect('/enroll/profile/')
+    else:
+        form = PasswordChangeForm(user=request.user)
+    return render(request, 'enroll/change_password.html', {'form': form})
+
+
+# View to change the user password which out required Old password
+def change_pass_with_out_old(request):
+    if not request.user.is_authenticated:
+        messages.warning(request, "Access Denied, You are not authenticated")
+        return HttpResponseRedirect('/enroll/login/')
+    if request.method == "POST":
+        form = SetPasswordForm(user=request.user, data=request.POST)
+        if form.is_valid():
+            form.save()
+            update_session_auth_hash(request, form.user)
+            messages.success(request, "Password Changed Successfully")
+            return HttpResponseRedirect('/enroll/profile/')
+    else:
+        form = SetPasswordForm(user=request.user)
+    return render(request, 'enroll/change_password.html', {'form': form})
