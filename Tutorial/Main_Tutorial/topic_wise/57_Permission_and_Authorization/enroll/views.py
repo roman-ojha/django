@@ -3,7 +3,7 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
 from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm
 from .forms import SighUpForm, EditUserProfileForm, EditAdminProfileForm
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group
 
 
 def sign_up(request):
@@ -11,7 +11,12 @@ def sign_up(request):
         form = SighUpForm(request.POST)
 
         if form.is_valid():
-            form.save()
+            user = form.save()
+            # while registering the user we will also add that user to some group
+            group = Group.objects.get(name="Editor")
+            # first we are getting the 'editor' group
+            # now we will add the user to the group
+            user.groups.add(group)
 
             messages.success(request, "Register User Successfully")
     else:
@@ -46,8 +51,11 @@ def sign_in(request):
 
 
 def dashboard(request):
+    # NOTE: we will add and remove permission to the user from '/admin' panel
+    # and we will check that permission inside view template as per that we will show the required data
+    # also we will create group and add user to that group and we know how permission work with group as well
     if request.user.is_authenticated:
-        pass
+        return render(request, 'enroll/dashboard.html', {'username': request.user.username})
     else:
         return HttpResponseRedirect('/enroll/login/')
 

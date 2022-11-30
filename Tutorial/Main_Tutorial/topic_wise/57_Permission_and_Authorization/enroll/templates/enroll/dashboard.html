@@ -8,8 +8,31 @@
 </head>
 <body>
     <h1>Dashboard Page</h1>
+    <h2>Welcome {{username}}</h2>
+
+    {% comment %} we will create a button to 'update', 'view','delete','add' {% endcomment %}
+    {% comment %} we will show these button as per the user permission {% endcomment %}
+    {% comment %} if you only have permission to view then we will just render 'View' button {% endcomment %}
+
+    {% comment %} for that we will check the permission that user have using 'perms' {% endcomment %}
+    {% if perms.enroll.delete_blog %}
+        {% comment %} perms.enroll.delete_<model> {% endcomment %}
+        {% comment %} so, now if the user have the permission to delete the user then we will render the button {% endcomment %}
+        <input type="button" value="Delete"><br/>
+    {% endif %}
+    {% if perms.enroll.add_blog %}
+        {% comment %} so, now if the user have the permission to add the user then we will render the button {% endcomment %}
+        <input type="button" value="Add"><br/>
+    {% endif %}
+    {% if perms.enroll.change_blog %}
+        {% comment %} so, now if the user have the permission to change the user then we will render the button {% endcomment %}
+        <input type="button" value="Change"><br/>
+    {% endif %}
+    {% if perms.enroll.view_blog %}
+        {% comment %} so, now if the user have the permission to view the user then we will render the button {% endcomment %}
+        <input type="button" value="View"><br/>
+    {% endif %}
 
     <a href="{% url 'logout' %}">Logout</a>
-
 </body>
 </html>

@@ -5,6 +5,6 @@ from django.db import models
 # to 'change', 'view', 'delete', 'add'
 
 
-# class Blog(models.Model):
-#     title = models.CharField(max_length=100)
-#     desc = models.CharField(max_length=200)
+class Blog(models.Model):
+    title = models.CharField(max_length=100)
+    desc = models.CharField(max_length=200)
