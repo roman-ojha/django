@@ -2,47 +2,32 @@ from django.shortcuts import render
 from datetime import datetime, timedelta
 
 
-def setCookie(request):
-    print("hello")
-    # we will store the returned response object
-    response = render(request, 'student/setcookies.html')
-    # now we will set the cookie
-    response.set_cookie('name', 'Roman')
-    response.set_cookie('name', 'Roman', max_age=60,
-                        expires=datetime.utcnow()+timedelta(days=2), path='/')
-    # after that we will return the response
-    return response
+def setSession(request):
+    # setting session using request object
+    request.session['name'] = 'Roman'
+    request.session['lname'] = 'Ojha'
+    return render(request, 'student/setsession.html')
 
 
-def getCookie(request):
-    # we can get the cookies from request object
-    # accessing 'name' cookie
-    name = request.COOKIES['name']
-    name = request.COOKIES.get('name')
-    name = request.COOKIES.get('name', 'default_value')
-    print(name)
-    return render(request, 'student/getcookies.html', {'name': name})
+def getSession(request):
+    # getting set session using request object
+    name = request.session['name']
+    name = request.session.get('name')
+    name = request.session.get('name', default="Guest")
+    lname = request.session.get('lname', default="Guest")
+    return render(request, 'student/getsession.html', {'name': name, 'lname': lname})
 
 
-def deleteCookie(request):
-    # we can delete cookie using response object
-    response = render(request, 'student/delcookies.html')
-    response.delete_cookie('name')
-    return response
+def deleteSession(request):
+    # first we will check does session exist on given key
+    if 'name' in request.session:
+        del request.session['name']
+    return render(request, 'student/delsession.html')
 
 
-def setSignedCookies(request):
-    response = render(request, 'student/setcookies.html')
-    # setting signed cookies
-    response.set_signed_cookie(
-        'name', 'Roman', salt="this is the salt", expires=datetime.utcnow()+timedelta(days=2))
-    # required a salt to get the cookie
-    return response
-
-
-def getSignedCookies(request):
-    # required a salt to get the cookie
-    # if you don't want to get error if 'salt' value didn't match then you can use the default value while getting the cookies
-    name = request.get_signed_cookie(
-        'name', salt="this is the salt", default="Guest")
-    return render(request, 'student/getcookies.html', {'name': name})
+def methods(request):
+    # we can access these method as variable inside django template
+    # keys()
+    keys = request.session.keys()
+    print("Keys: ", keys)
+    return render(request, 'student/setsession.html')
