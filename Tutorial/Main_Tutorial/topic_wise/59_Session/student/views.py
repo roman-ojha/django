@@ -7,7 +7,7 @@ def setSession(request):
     request.session['name'] = 'Roman'
     # setting expiry date
     # expire on 5 second
-    request.session.set_expiry(5)
+    # request.session.set_expiry(5)
     # expire on browser close:
     # request.session.set_expiry(0)
 
