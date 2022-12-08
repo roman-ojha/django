@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    Name : {{name}}
+    Lname : {{lname}}
+
+    {% comment %} accessing session value inside template {% endcomment %}
+    {% comment %} Keys: {% endcomment %}
+    {% for key in request.session.keys %}
+        <h1>
+            {{key}}
+        </h1>
+    {% endfor %}
+
+    {% comment %} Items: {% endcomment %}
+    {% for key, value in request.session.items %}
+        <h1>
+            {{key}}: {{value}}
+        </h1>
+    {% endfor %}
+
+    {% comment %} getting session age {% endcomment %}
+    {{request.session.get_session_cookie_age}} <br/>
+    {{request.session.get_expiry_age}} <br/>
+    {{request.session.get_expiry_date}} <br/>
+    {{request.session.get_expire_at_browser_close}} <br/>
+    {% comment %} 
+    Output:
+        1209600
+        1209600
+        Dec. 22, 2022, 3:41 a.m.
+        False
+    {% endcomment %}
+</body>
+</html>
