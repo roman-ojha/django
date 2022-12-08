@@ -1,4 +1,5 @@
 from pathlib import Path
+import os
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -77,8 +78,6 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-#  we will check the timezone to this location just to check session settings
-# https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
 TIME_ZONE = 'Asia/Kathmandu'
 
 USE_I18N = True
@@ -89,36 +88,7 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-
-# overriding the default Session settings:
-
-# default age of the cookie if we didn't set the age
-SESSION_COOKIE_AGE = 400
-
-# Change the name of the default Session Cookie name
-# default name 'sessionid'
-SESSION_COOKIE_NAME = 'session_id'
-
-# Change cookie default path
-SESSION_COOKIE_PATH = '/home'
-
-# Change default HTTP Only
-# True: it will not given permission to access the cookie from the client site javascript
-SESSION_COOKIE_HTTPONLY = True
-
-# Change default Cookie secure, by default it is false
-SESSION_COOKIE_SECURE = True
-
-# Change the default session storage
-# set file based session
+# Because we are using File base session we have to change it to file based engine
 SESSION_ENGINE = 'django.contrib.sessions.backends.file'
-
-# Expire the session on browser close
-# default: False
-SESSION_EXPIRE_AT_BROWSER_CLOSE = True
-
-# set the default pat where you want to store session on file based session
-SESSION_FILE_PATH = ''
-
-# if you want session to get save in every request
-SESSION_SAVE_EVERY_REQUEST = True
+# saving the file base session on given path
+SESSION_FILE_PATH = os.path.join(BASE_DIR, 'session')

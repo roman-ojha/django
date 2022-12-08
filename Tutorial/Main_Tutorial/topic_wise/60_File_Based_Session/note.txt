@@ -1,0 +1,2 @@
+=> used file is './config/settings.py' and other views and urls we have already learned it
+=> we used './session' folder to store the file based session
