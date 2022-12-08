@@ -73,7 +73,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-# setting time zone as per our location where server exist
+# setting time zone as per our location where server exist so that when django will cache then it will store on the given time zone
 TIME_ZONE = 'Asia/Kathmandu'
 
 USE_I18N = True

@@ -1,0 +1,16 @@
+*) Per-view Cache
+    => first configure it on './config/settings.py'
+    => then run:
+        -> python manage.py migrate
+        -> python manage.py createcachetable
+    => after that our cache get setup
+
+    *) You can use file system cache also Memory Caching same as we did it before on per-site-cache
+
+=> used files are './config/settings.py', './enroll/templates/enroll/course.html' other files are same as before
+
+*) Clear cache using shell
+    -> python manage.py shell
+    -> from django.core.cache import cache
+    -> cache.clear()
+    -> quit()
