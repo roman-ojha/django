@@ -1,0 +1,18 @@
+*) Per-site-cache
+    => first configure it on './config/settings.py'
+    => then run:
+        -> python manage.py migrate
+        -> python manage.py createcachetable
+    => after that our cache get setup
+    => now when ever the request happen in that case first it will check does the request site exist on cache or not
+    -> if doesn't exist then it will generate code of that site and then store into the cache and return that page as response
+    -> after that if someone again try to visit the same page in that case, first it will check on cache if exist then it will response that page
+    -> because it is not being generate again it will be much faster
+
+    *) Filesystem cache
+        -> we will store the Per-site on './cache' folder
+    
+    *) Local memory Cache
+        -> NOTE: don't use this cache in production
+
+    => we have to clear those case that get expire
