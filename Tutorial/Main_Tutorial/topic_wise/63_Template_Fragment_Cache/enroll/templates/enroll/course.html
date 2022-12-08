@@ -1,3 +1,5 @@
+{% load cache %}
+{% comment %} firstly we will load the cache {% endcomment %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,7 +11,12 @@
 <body>
     <h1>Course 1</h1>
     <h1>Course 2</h1>
+
+    {% comment %} so here we want to cache these tow element so we will  {% endcomment %}
+    {% cache 30 course %}
+    {% comment %} {% cache <sec_time> <name> %} {% endcomment %}
     <h1>Course 3</h1>
     <h1>Course 4</h1>
+    {% endcache course %}
 </body>
 </html>

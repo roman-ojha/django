@@ -7,4 +7,4 @@
 
     *) You can use file system cache also Memory Caching same as we did it before on per-site-cache
 
-=> used files are './enroll/urls.py', './enroll/views.py', './config/settings.py'
+=> used files are './config/settings.py', './enroll/templates/enroll/course.html' other files are same as before
