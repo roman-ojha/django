@@ -1,0 +1,4 @@
+=> Used files are './blog/middlewares.py', './blog/views.py', './blog/templates/blog/user.html', './config/urls.py', './config/settings.py' 
+
+=> you can use built in middleware as per you requirement and change it's value into 'settings.py' file
+    -> we given and example on all Built in Middleware Images
