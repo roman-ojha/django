@@ -1,6 +1,8 @@
 # importing signals
 from django.contrib.auth.signals import user_logged_in, user_logged_out, user_login_failed
-from django.db.models.signals import pre_init, pre_save, pre_delete, post_init, post_save, post_delete
+from django.db.models.signals import pre_init, pre_save, pre_delete, post_init, post_save, post_delete, pre_migrate, post_migrate
+from django.core.signals import request_finished, request_started, got_request_exception
+from django.db.backends.signals import connection_created
 # importing User model it will become the sender
 from django.contrib.auth.models import User
 from django.dispatch import receiver
@@ -101,7 +103,7 @@ def at_beginning_delete(sender, instance, **kwargs):
 # pre_delete.connect(at_beginning_delete,sender=User)
 
 
-@receiver(pre_delete, sender=User)
+@receiver(post_delete, sender=User)
 def at_ending_delete(sender, instance, **kwargs):
     # function that will get called after the model is get deleted
     print("------------------------------------")
@@ -131,6 +133,79 @@ def at_ending_init(sender, *args, **kwargs):
     print("Sender: ", sender)
     print(f'Args {args}')
     print(f'Kwargs {kwargs}')
+# post_init.connect(at_ending_init, sender=User)
 
 
-post_init.connect(at_ending_init, sender=User)
+@receiver(request_started)
+def at_beginning_request(sender, environ, **kwargs):
+    # function that will get called at the beginning of the request  to start
+    print("------------------------------------")
+    print("Request Started Signal....")
+    print("Sender: ", sender)
+    print('Environ: ', environ)
+    print(f'Kwargs {kwargs}')
+# request_started.connect(at_beginning_request)
+
+
+@receiver(request_finished)
+def at_ending_request(sender, **kwargs):
+    # function that will get called at the end of the request when it get finished
+    print("------------------------------------")
+    print("Request Finished Signal....")
+    print("Sender: ", sender)
+    print(f'Kwargs {kwargs}')
+# request_finished.connect(at_ending_request)
+
+
+@receiver(got_request_exception)
+def at_ending_request(sender, request, **kwargs):
+    # function that will get called if exception get thrown when user try to request
+    print("------------------------------------")
+    print("Request Exception Signal....")
+    print("Sender: ", sender)
+    print('request: ', request)
+    print(f'Kwargs {kwargs}')
+# request_finished.connect(at_ending_request)
+
+
+@receiver(pre_migrate)
+def before_install_app(sender, app_config, verbosity, interactive, using, plan, apps, **kwargs):
+    # function that will get called before migrate
+    print("------------------------------------")
+    print("Pre Migrate Signal....")
+    print("Sender: ", sender)
+    print("App Config: ", app_config)
+    print("Verbosity: ", verbosity)
+    print("Interactive: ", interactive)
+    print("Using: ", using)
+    print("Plan: ", plan)
+    print("Apps: ", apps)
+    print(f'Kwargs {kwargs}')
+# pre_migrate.connect(before_install_app)
+
+
+@receiver(post_migrate)
+def at_end_migrate_flush(sender, app_config, verbosity, interactive, using, plan, apps, **kwargs):
+    # function that will get called after migration
+    print("------------------------------------")
+    print("Post Migrate Signal....")
+    print("Sender: ", sender)
+    print("App Config: ", app_config)
+    print("Verbosity: ", verbosity)
+    print("Interactive: ", interactive)
+    print("Using: ", using)
+    print("Plan: ", plan)
+    print("Apps: ", apps)
+    print(f'Kwargs {kwargs}')
+# post_migrate.connect(at_end_migrate_flush)
+
+
+@receiver(connection_created)
+def at_end_migrate_flush(sender, connection, **kwargs):
+    # function that will get called when database connect get created
+    print("------------------------------------")
+    print("Initial connection to the database signal....")
+    print("Sender: ", sender)
+    print("Connection: ", connection)
+    print(f'Kwargs {kwargs}')
+# connection_created.connect(at_end_migrate_flush)

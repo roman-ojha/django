@@ -1,1 +1,3 @@
 => migrate and create super user
+
+=> Used file are './blog/signals.py', './blog/apps.py', './blog/__init__.py'
