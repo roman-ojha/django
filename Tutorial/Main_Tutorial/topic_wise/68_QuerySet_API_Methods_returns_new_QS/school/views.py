@@ -1,5 +1,6 @@
 from django.shortcuts import render
-from .models import Student
+from .models import Student, Teacher
+from django.db.models import Q
 
 # Create your views here.
 
@@ -64,5 +65,33 @@ def home(request):
     # Dates:
     students = Student.objects.dates('pass_date', 'month')
     print(students)
+
+    # Union:
+    # using 'Student' & 'Teacher' models to perform union
+    qs1 = Student.objects.values_list('id', 'name', named=True)
+    qs2 = Teacher.objects.values_list('id', 'name', named=True)
+    students = qs2.union(qs1)
+    # Getting both 'Student' & 'Teacher' data and union it to get both data into one
+    # also it wil remove the duplicate data
+    # SELECT "school_teacher"."id", "school_teacher"."name" FROM "school_teacher" UNION SELECT "school_student"."id", "school_student"."name" FROM "school_student"
+    students = qs2.union(qs1, all=True)
+    # getting duplicate data as well
+
+    # Intersection
+    students = qs2.intersection(qs1)
+    # return similar data on both Table
+
+    # Difference
+    students = qs2.difference(qs1)
+    students = qs1.difference(qs2)
+
+    # AND:
+    students = Student.objects.filter(id=2) & Student.objects.filter(roll=30)
+    students = Student.objects.filter(id=2, roll=30)
+    students = Student.objects.filter(Q(id=2) & Q(roll=30))
+    # OR:
+    students = Student.objects.filter(id=2) | Student.objects.filter(marks=300)
+    students = Student.objects.filter(Q(id=2) | Q(marks=300))
+    # SELECT "school_student"."id", "school_student"."name", "school_student"."roll", "school_student"."city", "school_student"."marks", "school_student"."pass_date" FROM "school_student" WHERE ("school_student"."id" = 2 OR "school_student"."marks" = 300)
 
     return render(request, 'school/home.html', {'students': students})
