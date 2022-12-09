@@ -73,4 +73,37 @@ def home(request):
     # students = Student.objects.bulk_create(objs=objs)
 
     # bulk_update:
+    all_students = Student.objects.all()
+    for stu in all_students:
+        # assign value here to update
+        if stu.marks == 300:
+            print(stu.marks)
+            stu.city = "New York"
+    # update those assigned bulk data
+    students = Student.objects.bulk_update(all_students, ['city'])
+
+    # in_bulk:
+    # get in bulk:
+    students = Student.objects.in_bulk([1, 2])
+    # get data which have primary key 1,2
+    print(students)
+    students = Student.objects.in_bulk([])
+    # return empty dictionary
+    students = Student.objects.in_bulk()
+    # return all
+
+    # delete:
+    # student = Student.objects.get(pk=18).delete()
+    # delete single record
+    # student = Student.objects.filter(marks=500).delete()
+    # delete multiple record
+    # student = Student.objects.all().delete()
+    # delete all record
+
+    # count:
+    # count all the output records
+    students = Student.objects.all()
+    print(students.count())
+
+    # explain:
     return render(request, 'school/home.html', {'student': student})
