@@ -1,109 +1,109 @@
 from django.shortcuts import render
 from .models import Student
+from datetime import date, time
 
 
 def home(request):
-    # get:
-    # get single data base on primary key
-    # also every row need to be uniquely identify with the from which we are trying to query
-    # also it need to match the data that we are trying to query
-    student = Student.objects.get(pk=1)
-    # we know id is also unique
-    student = Student.objects.get(id=2)
-    # we make roll unique as well
-    student = Student.objects.get(roll=25)
+    students = Student.objects.filter(name__exact='roman')
 
-    # first:
-    # get the first match data
-    student = Student.objects.first()
-    student = Student.objects.order_by('name').first()
-    student = Student.objects.order_by('-name').first()
-    student = Student.objects.filter(roll=25).first()
+    students = Student.objects.filter(name__iexact='roman')
+    # i for case insensitive
 
-    # last:
-    student = Student.objects.last()
-    student = Student.objects.order_by('name').last()
-    student = Student.objects.order_by('-name').last()
-    student = Student.objects.filter(roll=25).last()
+    students = Student.objects.filter(name__contains='zz')
 
-    # latest:
-    student = Student.objects.latest('pass_date')
+    students = Student.objects.filter(name__icontains='zz')
 
-    # earliest
-    student = Student.objects.earliest('pass_date')
+    students = Student.objects.filter(id__in=[1, 2, 5])
+    # those how have id as given
 
-    # exists:
-    # check does data or not
-    student = Student.objects.all()
-    print(student.exists())
-    print(student.filter(pk=Student.objects.get(pk=1).pk).exists())
+    students = Student.objects.filter(marks__in=[300, 500])
 
-    # Create:
-    # to create|insert data
-    # student = Student.objects.create(
-    #     name='Tony', roll=33, city="Kathmandu", marks=321, pass_date='2020-5-4')
+    # greater then:
+    students = Student.objects.filter(marks__gt=300)
 
-    # get_or_create:
-    # get if exist if not then create
-    student, created = Student.objects.get_or_create(
-        name='Tony', roll=33, city="Kathmandu", marks=321, pass_date='2020-5-4')
+    # greater then or equal:
+    students = Student.objects.filter(marks__gte=300)
 
-    # update:
-    # to update the data
-    # NOTE: update method only work on QuerySet not only object
-    # update single data
-    student = Student.objects.filter(id=2).update(name="Razz Roman", marks=421)
-    # update multiple data
-    student = Student.objects.filter(marks=421).update(name="Razz", marks=500)
+    # less then:
+    students = Student.objects.filter(marks__lt=500)
 
-    # update or create
-    # update if exist if not create
-    # student, created = Student.objects.update_or_create(
-    #     id=4, name='Tony', defaults={'name': 'tony', 'roll': 30, 'city': "Kathmandu", 'marks': 321, 'pass_date': '2020-5-4'})
-    # if id=4 and name = 'Tony' exist then update 'defaults'
+    # less then or equal:
+    students = Student.objects.filter(marks__lte=500)
 
-    # bulk_create:
-    # create multiple data at once
-    objs = [
-        Student(
-            name='Strange', roll=21, city="Kathmandu", marks=321, pass_date='2020-5-4'),
-        Student(
-            name='Superman', roll=22, city="Pokhara", marks=123, pass_date='2020-4-4'),
-    ]
-    # students = Student.objects.bulk_create(objs=objs)
+    # starts with:
+    students = Student.objects.filter(name__startswith='r')
+    students = Student.objects.filter(name__istartswith='r')
 
-    # bulk_update:
-    all_students = Student.objects.all()
-    for stu in all_students:
-        # assign value here to update
-        if stu.marks == 300:
-            print(stu.marks)
-            stu.city = "New York"
-    # update those assigned bulk data
-    students = Student.objects.bulk_update(all_students, ['city'])
+    # ends with:
+    students = Student.objects.filter(name__endswith='n')
+    students = Student.objects.filter(name__iendswith='n')
 
-    # in_bulk:
-    # get in bulk:
-    students = Student.objects.in_bulk([1, 2])
-    # get data which have primary key 1,2
-    print(students)
-    students = Student.objects.in_bulk([])
-    # return empty dictionary
-    students = Student.objects.in_bulk()
-    # return all
+    # range:
+    students = Student.objects.filter(
+        pass_date__range=('2012-04-14', '2022-05-01'))
 
-    # delete:
-    # student = Student.objects.get(pk=18).delete()
-    # delete single record
-    # student = Student.objects.filter(marks=500).delete()
-    # delete multiple record
-    # student = Student.objects.all().delete()
-    # delete all record
+    # date:
+    students = Student.objects.filter(
+        admdatetime__date=date(2022, 12, 10))
+    # date with greater then
+    students = Student.objects.filter(
+        admdatetime__date__gt=date(2022, 12, 9))
+    # we can add these multiple lookup in ever other field lookup
 
-    # count:
-    # count all the output records
-    students = Student.objects.all()
-    print(students.count())
+    # year:
+    students = Student.objects.filter(
+        pass_date__year=2022)
+    # year greater then
+    students = Student.objects.filter(
+        pass_date__year__gt=2020)
 
-    # explain:
-    return render(request, 'school/home.html', {'student': student})
+    # month:
+    students = Student.objects.filter(
+        pass_date__month=10)
+    students = Student.objects.filter(
+        pass_date__month__gt=4)
+
+    # day:
+    students = Student.objects.filter(
+        pass_date__day=2)
+    students = Student.objects.filter(
+        pass_date__day__gt=3)
+    students = Student.objects.filter(
+        pass_date__day__gte=3)
+
+    # week:
+    students = Student.objects.filter(
+        pass_date__week=14)
+
+    # week day:
+    students = Student.objects.filter(
+        pass_date__week_day=3)
+    students = Student.objects.filter(
+        pass_date__week_day__gt=3)
+
+    # quarter:
+    students = Student.objects.filter(
+        pass_date__quarter=3)
+
+    # time
+    students = Student.objects.filter(
+        admdatetime__time__gt=time(6, 00))
+
+    # hour:
+    students = Student.objects.filter(
+        admdatetime__hour__gt=5)
+
+    # minute:
+    students = Student.objects.filter(
+        admdatetime__minute__gt=56)
+
+    # second
+    students = Student.objects.filter(
+        admdatetime__second__gt=20)
+
+    # isnull
+    students = Student.objects.filter(
+        admdatetime__isnull=False)
+
+    print("SQL: ", students.query)
+    return render(request, 'school/home.html', {'students': students})

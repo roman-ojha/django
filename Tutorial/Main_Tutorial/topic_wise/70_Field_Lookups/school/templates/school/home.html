@@ -7,13 +7,16 @@
     <title>Document</title>
 </head>
 <body>
-    <h3>Student</h3>
-    {{student.id}}
-    {{student.name}}
-    {{student.roll}}
-    {{student.marks}}
-    {{student.city}}
-    {{student.pass_date}}
-    <br/>
+    <h3>Students</h3>
+    {% for student in students %}
+        {{student.id}}
+        {{student.name}}
+        {{student.roll}}
+        {{student.marks}}
+        {{student.city}}
+        {{student.pass_date}}
+        {{student.admdatetime}}
+        <br/>
+    {% endfor %}
 </body>
 </html>
