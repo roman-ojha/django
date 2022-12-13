@@ -57,4 +57,28 @@ class Student2(ExamCenter):
 
     # field for this table are 'examcenter_ptr_id', 'name', 'roll'
 
-#  Inheritance: ========================================
+
+#  Proxy Model: ========================================
+class ExamCenter2(models.Model):
+    cname = models.CharField(max_length=70)
+    city = models.CharField(max_length=70)
+
+
+class MyExampleCenter(ExamCenter2):
+    class Meta:
+        # creating proxy model using 'ExamCenter2'
+        proxy = True
+        # because we create the proxy model from 'ExamCenter2' django will only create the table for 'ExamCenter2' model
+        # but there will exist the proxy of that base class model
+
+        # now if we will add a new data from any of these two model till will get save into one table
+
+        # now inside the proxy model we can change the behavior of the model
+
+        # like the ordering
+        ordering = ['id']
+        # now the order of the field inside 'MyExampleCenter' will be 1, 2, 3, 4
+        # but the default order on 'ExamCenter2' will be 4, 3, 2, 1
+
+        # ordering using city
+        # ordering = ['city']
