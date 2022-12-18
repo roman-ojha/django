@@ -1,6 +1,5 @@
 from django.db import models
-
-# Create your models here.
+from .manager import CustomManager
 
 
 class Student(models.Model):
@@ -8,4 +7,7 @@ class Student(models.Model):
     roll = models.IntegerField()
 
     # you can change the manager name by default it is 'objects'
-    objects = models.Manager()
+    students = models.Manager()
+
+    # using custom manager now we can use this manager as well to access the querySet
+    students_custom = CustomManager()

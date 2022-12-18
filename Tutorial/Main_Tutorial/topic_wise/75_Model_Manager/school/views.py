@@ -3,5 +3,9 @@ from .models import Student
 
 
 def home(request):
-    students = Student.objects.all()
+    # accessing all the student with different manager name 'students'
+    students = Student.students.all()
+
+    # using the custom manager to query the data
+    students = Student.students_custom.all()
     return render(request, 'school/home.html', {'students': students})
