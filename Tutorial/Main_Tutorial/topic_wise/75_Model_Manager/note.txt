@@ -1,0 +1,1 @@
+=> used files are './school/manager.py', './school/models.py', './config/urls.py', './school/templates/school/home.html', './school/views.py', './school/admin.py'
