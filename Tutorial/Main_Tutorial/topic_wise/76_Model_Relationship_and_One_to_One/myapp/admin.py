@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Page
+from .models import Page, Like
 
 # Register your models here.
 
@@ -7,3 +7,8 @@ from .models import Page
 @admin.register(Page)
 class PageAdmin(admin.ModelAdmin):
     list_display = ['page_name', 'page_cat', 'page_published_date', 'user']
+
+
+@admin.register(Like)
+class LikeAdmin(admin.ModelAdmin):
+    list_display = ['page', 'likes']

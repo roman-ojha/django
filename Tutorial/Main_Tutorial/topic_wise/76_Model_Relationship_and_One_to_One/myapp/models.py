@@ -25,3 +25,18 @@ class Page(models.Model):
     # But if we will delete  the page then it will not delete the user
     # To make that happen we can create a signal which will delete the user whenever we will delete the page associated with it
     # we will create signal on './signals.py'
+
+
+# One-to-One relationship using Model Inheritance
+class Like(Page):
+    # here when we will inherit new model with the existing model then automatically there will be one-to-one relationship with these two model
+
+    # But rather then using the default behavior we want our own relationship to the 'Page' Model in that case we will do this:
+    page = models.OneToOneField(
+        Page, on_delete=models.CASCADE, primary_key=True,
+        # we also have to add 'parent_link' True
+        parent_link=True)
+
+    likes = models.IntegerField()
+
+    # Now while adding new Like we will get all the file relate to 'Page' & 'Like' Model
