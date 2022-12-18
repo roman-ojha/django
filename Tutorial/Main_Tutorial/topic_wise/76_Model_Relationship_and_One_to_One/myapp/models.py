@@ -20,3 +20,8 @@ class Page(models.Model):
     page_name = models.CharField(max_length=70)
     page_cat = models.CharField(max_length=70)
     page_published_date = models.DateField()
+
+    # Now when we will delete the user then it will delete the Page as well on by default
+    # But if we will delete  the page then it will not delete the user
+    # To make that happen we can create a signal which will delete the user whenever we will delete the page associated with it
+    # we will create signal on './signals.py'
