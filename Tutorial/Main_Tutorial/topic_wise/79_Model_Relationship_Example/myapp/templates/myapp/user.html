@@ -8,5 +8,8 @@
 </head>
 <body>
     <h1>User</h1>
+    {% for user in users %}
+        <p>{{user.username}} {{user.email}}</p>
+    {% endfor %}
 </body>
 </html>

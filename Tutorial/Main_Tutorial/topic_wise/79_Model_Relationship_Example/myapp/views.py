@@ -1,9 +1,15 @@
 from django.shortcuts import render
+from django.contrib.auth.models import User
 from .models import Page, Post, Song
 
 
 def home(request):
     return render(request, 'myapp/home.html')
+
+
+def show_user_data(request):
+    users = User.objects.all()
+    return render(request, 'myapp/user.html', {'users': users})
 
 
 def show_page_data(request):
