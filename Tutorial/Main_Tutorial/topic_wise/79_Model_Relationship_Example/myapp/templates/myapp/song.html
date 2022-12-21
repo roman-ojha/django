@@ -7,6 +7,9 @@
     <title>Document</title>
 </head>
 <body>
-    
+    <h1>Song</h1>
+    {% for song in songs %}
+        <p>{{song.song_name}} {{song.song_duration}} {{song.written_by}}</p>
+    {% endfor %}
 </body>
 </html>
