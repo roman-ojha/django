@@ -21,7 +21,9 @@ class Post(models.Model):
 
 class Song(models.Model):
     # Many to many relationship
-    user = models.ManyToManyField(User)
+    user = models.ManyToManyField(User, related_name='mysong')
+    # if we will give 'related_name' then it means that while querying the data for song related data in that case we have to use 'mysong'
+    # EX: User.objects.filter(mysong__song_duration=32)
     song_name = models.CharField(max_length=70)
     song_duration = models.IntegerField()
 
