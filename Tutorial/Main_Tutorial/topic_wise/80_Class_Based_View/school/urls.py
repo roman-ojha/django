@@ -11,4 +11,12 @@ urlpatterns = [
     path('class/', views.MyView.as_view(get_data="Class based view - GET"), name="class"),
     path('subclass/', views.MyViewChild.as_view(
         get_data="Class based view - GET, Subclass"), name="subclass"),
+
+    # return render function with context
+    path('homefunc/', views.homeFunc, name='homefunc'),
+    path('homeclass/', views.HomeClass.as_view(), name='homeclass'),
+
+    # return form data
+    path('contactfunc/', views.contactFun, name='contactfun'),
+    path('contactclass/', views.ContactClass.as_view(), name='contactclass'),
 ]
