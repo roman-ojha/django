@@ -19,4 +19,14 @@ urlpatterns = [
     # return form data
     path('contactfunc/', views.contactFun, name='contactfun'),
     path('contactclass/', views.ContactClass.as_view(), name='contactclass'),
+
+    # rendering different template file using same view function
+    path('newsfunc/', views.newsFun,
+         {'template_name': 'school/news.html'}, name='newsfunc'),
+    path('newsfunc2/', views.newsFun,
+         {'template_name': 'school/news2.html'}, name='newsfunc2'),
+    path('newsclass/', views.NewsClass.as_view(template_name='school/news.html'),
+         name='newsclass'),
+    path('newsclass2/', views.NewsClass.as_view(template_name='school/news2.html'),
+         name='newsclass2'),
 ]

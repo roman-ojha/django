@@ -65,3 +65,18 @@ class ContactClass(View):
             return HttpResponse('Form submitted')
         else:
             return HttpResponse("Invalid Form")
+
+
+# Function Based view that will return different template
+def newsFun(request, template_name):
+    context = {'info': "This is News Info"}
+    return render(request, template_name, context)
+
+
+# Class Based view that will return different template
+class NewsClass(View):
+    template_name = ''
+
+    def get(self, request):
+        context = {'info': "This is News Info From Class Based view"}
+        return render(request, self.template_name, context)
