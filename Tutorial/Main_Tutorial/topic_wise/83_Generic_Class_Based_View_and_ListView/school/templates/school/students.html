@@ -11,5 +11,9 @@
         {% for student in students %}
             <h3>{{student.id}}. {{student.name}} {{student.roll}} {{student.course}}</h3>
         {% endfor %}
+
+        {% for student in object_list %}
+            <h3>{{student.id}}. {{student.name}} {{student.roll}} {{student.course}}</h3>
+        {% endfor %}
 </body>
 </html>

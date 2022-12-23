@@ -151,3 +151,23 @@ class MyTemplateResponseMiddleware:
         response.context_data['name'] = "Razz"
         # after manipulating the data we can return the response
         return response
+
+
+# We can make a logic to implement middleware just for specific routes:
+class RouteBasedMiddleware:
+    def __init__(self, get_response):
+        print("Route based middleware")
+        self.get_response = get_response
+
+    def __call__(self, request):
+        if request.path == '/':
+            # Logic Only for '/' route middleware before view
+            print("Logic Only for '/' route middleware before view")
+        response = self.get_response(request)
+        if request.path == '/':
+            # Logic Only for '/' route middleware after view
+            print("Logic Only for '/' route middleware after view")
+        return response
+
+    def process_view(self, request, view_func, view_args, view_kwargs):
+        return None

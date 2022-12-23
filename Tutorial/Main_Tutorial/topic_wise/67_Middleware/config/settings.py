@@ -36,6 +36,7 @@ MIDDLEWARE = [
     'blog.middlewares.MyProcessMiddleware',
     'blog.middlewares.MyExceptionMiddleware',
     'blog.middlewares.MyTemplateResponseMiddleware',
+    'blog.middlewares.RouteBasedMiddleware'
 ]
 
 ROOT_URLCONF = 'config.urls'
