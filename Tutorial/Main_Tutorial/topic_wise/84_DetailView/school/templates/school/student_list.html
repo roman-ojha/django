@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Student List</h1>
+        {% for student in student_list %}
+            <h4>
+                {% comment %} Navigating to the specific student detail {% endcomment %}
+                <a href="{% url "student" student.id %}">{{student.id}}. {{student.name}} {{student.roll}} {{student.course}}</a><br/>
+            </h4>
+        {% endfor %}
+</body>
+</html>
