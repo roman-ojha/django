@@ -1,0 +1,1 @@
+=> Used files are './config/urls.py', './school/templates/school/<name>.html', './school/admin.py', './school/models.py', './school/views.py'
