@@ -1,0 +1,14 @@
+*) Reset password:
+    -> for the password reset we need to use email to verify the user and then reset password for that we have to do these things as well:
+        -> first add this line of code in 'settings.py' file:
+            -> EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+        -> For production we have to define smtp but for development we will just provide console
+        
+*) To override the default profile URL we can add this in 'settings.py':
+    -> LOGIN_REDIRECT_URL = "/"
+    
+*) To override the default login URL we can add this in 'settings.py':
+    -> LOGIN_URL = "/accounts/login/"
+
+=> Used files are 'settings.py', './config/urls.py', './registration/templates/registration/login.html', './registration/templates/registration/profile.html',
+'./registration/urls.py', './registration/views.py'
