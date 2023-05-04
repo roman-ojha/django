@@ -1,3 +1,5 @@
 from django.shortcuts import render
 
-# Create your views here.
+
+def addAndShow(request):
+    return render(request, 'enroll/addandshow.html')
