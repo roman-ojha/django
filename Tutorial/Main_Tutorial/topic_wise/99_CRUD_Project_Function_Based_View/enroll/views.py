@@ -29,3 +29,16 @@ def delete_student(request, id):
         user = User.objects.get(pk=id)
         user.delete()
         return HttpResponseRedirect('/')
+
+
+def update_student(request, id):
+    if request.method == "POST":
+        pi = User.objects.get(pk=id)
+        fm = StudentRegistration(request.POST, instance=pi)
+        if fm.is_valid():
+            fm.save()
+        return HttpResponseRedirect('/')
+    else:
+        pi = User.objects.get(pk=id)
+        fm = StudentRegistration(instance=pi)
+        return render(request, 'enroll/updatestudent.html', {'form': fm})
