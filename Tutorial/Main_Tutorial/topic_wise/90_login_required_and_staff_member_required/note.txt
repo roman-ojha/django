@@ -1,0 +1,2 @@
+=> Used files are 'settings.py', './config/urls.py', './registration/templates/registration/login.html', './registration/templates/registration/profile.html',
+'./registration/urls.py', './registration/views.py'

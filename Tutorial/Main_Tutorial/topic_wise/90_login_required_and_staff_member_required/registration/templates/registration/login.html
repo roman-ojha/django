@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% comment %} we have to provide our own template because it doesn't provide us it's own template {% endcomment %}
+    <form action="" method="POST" novalidate>
+        {% comment %} By default after login this page will redirect to 'accounts/profile'. so, because of that we have to create our own template, view & add url {% endcomment %}
+    {% csrf_token %}
+    {{form.as_p}}
+    <input type="submit" value="Login"/>
+    </form>
+</body>
+</html>
