@@ -1,21 +1,31 @@
-from django.shortcuts import render
+from django.shortcuts import render, HttpResponseRedirect
 from .forms import StudentRegistration
 from .models import User
 
+# Add new student & Show students
 
-def addAndShow(request):
+
+def add_and_show(request):
     if request.method == "POST":
         fm = StudentRegistration(request.POST)
         if fm.is_valid():
-            # fm.save()
             name = fm.cleaned_data['name']
             email = fm.cleaned_data['email']
             password = fm.cleaned_data['password']
             user = User(name=name, email=email, password=password)
             user.save()
+            # fm.save()
         fm = StudentRegistration()
-        students = User.objects.all()
     else:
         fm = StudentRegistration()
-        students = User.objects.all()
+    students = User.objects.all()
     return render(request, 'enroll/addandshow.html', {'form': fm, 'students': students})
+
+# Delete student
+
+
+def delete_student(request, id):
+    if request.method == "POST":
+        user = User.objects.get(pk=id)
+        user.delete()
+        return HttpResponseRedirect('/')

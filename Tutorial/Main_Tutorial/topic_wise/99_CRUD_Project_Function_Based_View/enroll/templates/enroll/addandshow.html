@@ -19,6 +19,7 @@
                         <th scope="col">Name</th>
                         <th scope="col">Email</th>
                         <th scope="col">Password</th>
+                        <th scope="col">Action</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -28,6 +29,14 @@
                             <td>{{student.name}}</td>
                             <td>{{student.email}}</td>
                             <td>{{student.password}}</td>
+                            <td>
+                                <a href="{% url 'update_student' student.id %}" class="btn btn-warning btn-sm">Edit</a>
+                                {% comment %} <form action="/delete/{{student.id}}/" method="post" class="d-inline"> {% endcomment %}
+                                <form action="{% url 'delete_student' student.id %}" method="post" class="d-inline">
+                                    {% csrf_token %}
+                                    <input type="submit" value="Delete" class="btn btn-danger btn-sm">
+                                </form>
+                            </td>
                           </tr>
                       {% endfor %}
                     </tbody>
