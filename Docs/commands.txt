@@ -2,13 +2,20 @@
 -> pip install django==<version> (install django specific version)
 -> django-admin (to see all django admin command)
 -> django-admin startproject <project_name> . (to initialized django project in current directory)
--> python manage.py runserver (to run server)
--> python manage.py runserver <port> (to run server on specify port)
--> python manage.py makemigrations (to make migrations)
--> python manage.py migrate (to migrate)
--> python manage.py runserver <port> (run django on given port)
 -> python manage.py shell (run django shell)
--> python manage.py createsuperuser (to create superuser)
--> python manage.py changepassword <username>
--> python manage.py sqlmigrate <app_name> <migration_file_name> (to see all sql statement contain on that file)
--> python manage.py showmigrations (to see all migrations)
+-> python manage.py startapp <app_name> (to create new application on project)
+
+*) Run server
+    -> python manage.py runserver (to run server)
+    -> python manage.py runserver <port> (to run server on specify port)
+    -> python manage.py runserver <port> (run django on given port)
+
+*) admin User
+    -> python manage.py createsuperuser (to create superuser)
+    -> python manage.py changepassword <username>
+
+*) Migrations:
+    -> python manage.py makemigrations (to make migrations)
+    -> python manage.py migrate (to migrate)
+    -> python manage.py showmigrations (to see all migrations)
+    -> python manage.py sqlmigrate <app_name> <migration_file_name> (to see all sql statement contain on that file)

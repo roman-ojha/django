@@ -1,0 +1,75 @@
+*) Method 1:
+    => To create Django models in a separate "models" directory, you can follow these steps:
+
+        -> Create a new directory named "models" inside your Django app directory. This directory will contain your model files.
+
+        -> Open the settings.py file in your Django project.
+
+        -> Locate the INSTALLED_APPS setting and add the path to your app with the "models" directory to the list. For example:
+            INSTALLED_APPS = [
+                ...
+                'myapp.models',
+                ...
+            ]
+        -> Inside the "models" directory, create a Python file for each model you want to define. For example, if you have a model named User, create a file called user.py inside the "models" directory.
+
+        -> In each model file, import the necessary modules (django.db and django.db.models) and define your model classes as usual. For example, in user.py:
+            from django.db import models
+
+            class User(models.Model):
+                name = models.CharField(max_length=100)
+                email = models.EmailField()
+                # Define other fields and relationships here
+        -> Run migrations to create the corresponding database tables for your models:
+            python manage.py makemigrations
+            python manage.py migrate
+        -> By organizing your models in a separate "models" directory, you can maintain a clean structure and separate your model definitions from other components of your Django app.
+        
+*) Method 2:
+    -> Create a separate file for each model within the "models" directory of your Django app. For example, you can have a file named "speaker.py" for the Speaker model.
+
+    -> In each model file, import the necessary modules (django.db and django.db.models) and define your model class. For example, in "speaker.py":
+        from django.db import models
+
+        class Speaker(models.Model):
+            name = models.CharField(max_length=100)
+            # Define other fields and relationships here
+    -> In the "init.py" file inside the "models" directory, import the models from their respective files. You can use aliases to differentiate between the imported model classes and the actual model names.
+        from .speaker import Speaker as _Speaker
+        -> NOTE: while i am practicing i have not follow this steps but also it worked
+    -> Using aliases like _Speaker helps prevent others from mistakenly importing the model directly without specifying the file. This encourages importing the model using the proper file path.
+    -> With this approach, you can organize your models into separate files based on their responsibilities, and import them as needed. It helps keep the "models.py" file from becoming overwhelming, especially in large applications.
+
+*) Method 3 to create model directory outside the application folder:
+    => To create the "models" directory outside the Django application folder, you can follow these steps:
+        -> Create a separate directory for your models. This can be anywhere in your project directory structure. For example, you can create a directory named "models" at the same level as your Django application folder.
+
+        -> Inside the "models" directory, create a Python file for each model you want to define. For example, if you have a model named User, create a file called "user.py" inside the "models" directory.
+
+        -> In each model file, import the necessary modules (django.db and django.db.models) and define your model class. For example, in "user.py":
+            from django.db import models
+
+            class User(models.Model):
+                name = models.CharField(max_length=100)
+                email = models.EmailField()
+                # Define other fields and relationships here
+        -> In your Django app's models.py file, remove the model definitions and instead import the models from the "models" directory. For example, if your app is named "myapp", modify the models.py file as follows:
+            from django.db import models
+            from myproject.models.user import User
+            # Remove any previous model definitions in this file
+            # Register the imported models
+
+        -> Replace "myproject" with the name of your Django project.
+
+        -> Ensure that your app is included in the INSTALLED_APPS setting in the project's settings.py file. If it's already included, you can skip this step.
+            INSTALLED_APPS = [
+                # other apps
+                'myapp',
+                # other apps
+            ]
+        -> Replace "myapp" with the name of your Django app.
+
+        -> After following these steps, Django should recognize the models defined in separate files outside the application folder. You can then run migrations to create the corresponding database tables:
+            python manage.py makemigrations
+            python manage.py migrate
+        -> Make sure you have correctly placed the model files in the separate "models" directory and updated the imports accordingly.
