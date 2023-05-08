@@ -1,0 +1,20 @@
+*) By default django provide these securities:
+    1. Cross Site Scripting (XSS) Protection
+    2. Cross Site Request Forgery (CSRF) Protection. 
+    3. SQL Injection Protection
+    4. ClickJacking Protection
+    
+*) Django suggestion:
+    -> SSL/HTTPS:
+        -> we should https on production
+    -> we should use 'Host header validation'
+    -> Referrer Policy
+    -> Session security
+    -> User-Uploaded content
+        -> it suggest to put all of the uploaded content/files into another service/platform not on the same server
+        
+-> Make sure that your python code is outside of the Web server's root. This will ensure that your python code is accidentally served as plain text(or accidentally executed).
+-> Take care with any user uploaded files.
+-> Django does not throttle request to authenticate users. To protect against brute-force attack against the authentication system, you may consider deploying a Django plugin or Web server module to throttle these request.
+-> Keep you SECRET_KEY a secret.
+-> It is a good idea to limit the accessibility of your caching system and database using a a firewall.
