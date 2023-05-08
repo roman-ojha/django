@@ -1,0 +1,32 @@
+*) To create Django views in a separate directory outside the application folder, you can follow these steps:
+
+    -> Create a separate directory for your views. This can be anywhere in your project directory structure. For example, you can create a directory named "views" at the same level as your Django application folder.
+
+    -> Inside the "views" directory, create a Python file for each view you want to define. For example, if you have a view named UserView, create a file called "userview.py" inside the "views" directory.
+
+    -> In each view file, define your view function or class. For example, in "userview.py":
+        from django.http import HttpResponse
+
+        def user_view(request):
+            return HttpResponse("User View")
+    -> In your Django app's urls.py file, import the views from the "views" directory and define the URL patterns. For example, if your app is named "myapp", modify the urls.py file as follows:
+        from django.urls import path
+        from myproject.views.userview import user_view
+
+        urlpatterns = [
+            path('user/', user_view, name='user'),
+            # other URL patterns
+        ]
+    -> Replace "myproject" with the name of your Django project.
+
+    -> Ensure that your app is included in the INSTALLED_APPS setting in the project's settings.py file. If it's already included, you can skip this step.
+        INSTALLED_APPS = [
+            # other apps
+            'myapp',
+            # other apps
+        ]
+    -> Replace "myapp" with the name of your Django app.
+
+    -> After following these steps, Django should recognize the views defined in separate files outside the application folder, and the URLs will be mapped accordingly. When you access the defined URL, the corresponding view function or class will be executed.
+
+    -> Make sure you have correctly placed the view files in the separate "views" directory and updated the imports and URL patterns accordingly.
