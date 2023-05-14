@@ -37,6 +37,7 @@
     -> In the "init.py" file inside the "models" directory, import the models from their respective files. You can use aliases to differentiate between the imported model classes and the actual model names.
         from .speaker import Speaker as _Speaker
         -> NOTE: while i am practicing i have not follow this steps but also it worked
+        -> For this I just have to register model into admin and it will automatically recognize the model files
     -> Using aliases like _Speaker helps prevent others from mistakenly importing the model directly without specifying the file. This encourages importing the model using the proper file path.
     -> With this approach, you can organize your models into separate files based on their responsibilities, and import them as needed. It helps keep the "models.py" file from becoming overwhelming, especially in large applications.
 

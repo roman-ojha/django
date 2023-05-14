@@ -1,0 +1,9 @@
+=> We don't really have to create separate tables for authentication like for Student and Teacher
+=> Because while authentication they share the same information like 'username' & 'password'
+=> If we will have one table which will contain the common information of all the user which is 'username' and 'password'
+=> So we can create the single table and manage the role like 'student' & 'teacher' role and assigning that particular user to the different groups which will full fill our authentication & authorization
+
+*) Setup Init project:
+    -> https://github.com/veryacademy/Django-4.x-ORM-Course.git
+    -> Directory:
+        -> https://github.com/veryacademy/Django-4.x-ORM-Course/tree/main/custom-user-model-ex1/Base.zip
