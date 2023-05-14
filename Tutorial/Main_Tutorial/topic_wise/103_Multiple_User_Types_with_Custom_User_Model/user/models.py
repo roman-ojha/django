@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser, BaseUserManager
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 
 # We will going to create the custom user model
@@ -45,14 +47,6 @@ class StudentManager(BaseUserManager):
 # >>> Student.objects.all() # getting all user data
 # <QuerySet [<Student: roman>, <Student: s1>]>
 
-# Now we will define the different Profile model for different type of the user so that they can have different kind of data
-# EX: Student user could have it's own different fields/data, Teacher user could have it's own different fields/data
-# So, now we will store those data into different table and add relation with the User table
-class StudentProfile(models.Model):
-    # one to one relation with the User model
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    # now add field that only Student could have
-    student_id = models.IntegerField(null=True, blank=True)
 
 
 # Now we will create the Student mode that will extend the custom 'User' model
@@ -70,7 +64,26 @@ class Student(User):
     # Also we can now create the student manager so that we can query the Student model objects and get only the data of students
     student = StudentManager()
     
-    # So because we have to different Profile table for S
+
+# Now we will define the different Profile model for different type of the user so that they can have different kind of data
+# EX: Student user could have it's own different fields/data, Teacher user could have it's own different fields/data
+# So, now we will store those data into different table and add relation with the User table
+# NOTE: in the current way of implementing Multiple User type User can't change their role because User is also associated with it's Profile if they want they have to create a new account
+class StudentProfile(models.Model):
+    # one to one relation with the User model
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    # now add field that only Student could have
+    student_id = models.IntegerField(null=True, blank=True)
+    
+# So because we have to different Profile table for Student when we creating the new Student we also have to populate the 'StudentProfile' table
+# we can achieve this by using the Django signals
+# so we will use 'post_save' signal, so when ever we save the 'Student' data we will send the signal and capture that signal and perform some additional task
+# so for that we will define the method with '@receiver'
+@receiver(post_save, sender=Student)
+def create_user_profile(sender, instance, created, **kwargs):
+    # inside here after user get saved we want to perform some action
+    if created and instance.role == "STUDENT": # if user had created successfully & role is 'STUDENT' then we will create the new entry for 'StudentProfile' table as well
+        StudentProfile.objects.create(user=instance)
 
 
 # Shell example to create new student with 'STUDENT' role:
@@ -109,3 +122,15 @@ class Teacher(User):
 # <QuerySet [<Teacher: s1>]>
 # >>> Teacher.objects.all()
 # <QuerySet [<Teacher: roman>, <Teacher: s1>, <Teacher: teacher123>]>
+
+
+# Again creating the TeacherProfile table
+class TeacherProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    teacher_id = models.IntegerField(null=True, blank=True)
+    
+# separate receiver for the Teacher 
+@receiver(post_save, sender=Teacher)
+def create_user_profile(sender, instance, created, **kwargs):
+    if created and instance.role == "TEACHER":
+        TeacherProfile.objects.create(user=instance)
