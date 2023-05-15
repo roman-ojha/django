@@ -1,0 +1,2 @@
+*) Choice field:
+    -> in some occasions where you want to create a predefined list so that user can select from that predefined list when filling a from
