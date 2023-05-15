@@ -69,6 +69,7 @@ class Student(User):
 # EX: Student user could have it's own different fields/data, Teacher user could have it's own different fields/data
 # So, now we will store those data into different table and add relation with the User table
 # NOTE: in the current way of implementing Multiple User type User can't change their role because User is also associated with it's Profile if they want they have to create a new account
+# NOTE: current method don't handle the rollback of the 'User' table if the transaction of the 'StudentProfile' throws and error, EX: after creating the 'User' it will then try to create the 'StudentProfile' in on that case there will occur an error in that case created 'User' data will be there in database table but it's associated data in 'StudentProfile' won't be there, so this method doesn't include that process of solving that problem
 class StudentProfile(models.Model):
     # one to one relation with the User model
     user = models.OneToOneField(User, on_delete=models.CASCADE)

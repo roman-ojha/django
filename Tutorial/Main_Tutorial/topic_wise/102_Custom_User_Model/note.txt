@@ -1,0 +1,7 @@
+*) Other Examples:
+    1) 
+        -> https://github.com/veryacademy/YT-Django-Theory-Create-Custom-User-Models-Admin-Testing/
+        -> https://www.youtube.com/watch?v=Ae7nc1EGv-A
+    2) 
+        -> https://github.com/monir0908/inventory
+        -> https://www.youtube.com/watch?v=EvHLHP1BoyY
