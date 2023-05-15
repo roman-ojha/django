@@ -1,12 +1,12 @@
 [submodule "Tutorial/Tut_02_Djongo"]
-	path = Tutorial/Tut_02_Djongo
+	path = Notes/03_Djongo
 	url = https://github.com/roman-ojha/djongo
 [submodule "Tutorial/Tut_03_Authentication_and_User_Management"]
-	path = Tutorial/Tut_03_Authentication_and_User_Management
+	path = Notes/04_Authentication_and_User_Management
 	url = git@github.com:roman-ojha/django-auth-and-user-management.git
 [submodule "Tutorial/Tut_05_Rest_Framework"]
-	path = Tutorial/Tut_05_Rest_Framework
+	path = Notes/05_Rest_Framework
 	url = https://github.com/roman-ojha/rest-framework
 [submodule "Tutorial/Tutorial_Projects/TweetMe"]
-	path = Tutorial/Tutorial_Projects/TweetMe
+	path = Notes/02_Projects/Tweetme
 	url = git@github.com:roman-ojha/django-tweetme.git
