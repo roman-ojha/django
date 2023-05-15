@@ -1,0 +1,71 @@
+To configure multiple databases in Django and use them accordingly, you can follow these steps:
+
+    Update DATABASES setting in your Django project's settings.py file to define multiple database configurations. Each database configuration should have a unique name as the key. For example:
+
+    python
+    Copy code
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'my_default_db',
+            'USER': 'myuser',
+            'PASSWORD': 'mypassword',
+            'HOST': 'localhost',
+            'PORT': '5432',
+        },
+        'second_db': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': 'my_second_db',
+            'USER': 'myuser',
+            'PASSWORD': 'mypassword',
+            'HOST': 'localhost',
+            'PORT': '3306',
+        },
+    }
+    In the example above, two databases are configured: default (PostgreSQL) and second_db (MySQL).
+
+    Use the database router to route database queries based on the app or model. Create a routers.py file in your Django project and define a router class to handle database routing. For example:
+
+    python
+    Copy code
+    class MyDatabaseRouter:
+        def db_for_read(self, model, **hints):
+            if model._meta.app_label == 'myapp':
+                return 'second_db'
+            return None
+
+        def db_for_write(self, model, **hints):
+            if model._meta.app_label == 'myapp':
+                return 'second_db'
+            return None
+
+        def allow_relation(self, obj1, obj2, **hints):
+            return None
+
+        def allow_migrate(self, db, app_label, model_name=None, **hints):
+            if app_label == 'myapp':
+                return db == 'second_db'
+            return None
+    In the example above, the router class routes database queries for the myapp app to the second_db database.
+
+    In your settings.py file, add the following configuration to specify the database router:
+
+    python
+    Copy code
+    DATABASE_ROUTERS = ['path.to.MyDatabaseRouter']
+    Replace 'path.to.MyDatabaseRouter' with the actual import path to your router class.
+
+    In your models, use the using attribute to specify the database to use for each model. For example:
+
+    python
+    Copy code
+    class MyModel(models.Model):
+        # Fields and definitions
+
+        class Meta:
+            app_label = 'myapp'
+            # Use the 'second_db' database for this model
+            using = 'second_db'
+    In the example above, the MyModel model will use the second_db database.
+
+    By following these steps, you can configure multiple databases in Django and use them accordingly based on the app, model, or specific queries.
