@@ -4,6 +4,7 @@
 -> django-admin startproject <project_name> . (to initialized django project in current directory)
 -> python manage.py shell (run django shell)
 -> python manage.py startapp <app_name> (to create new application on project)
+-> py manage.py <command> (small version of command)
 
 *) Run server
     -> python manage.py runserver (to run server)

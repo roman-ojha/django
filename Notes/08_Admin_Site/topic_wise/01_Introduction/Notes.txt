@@ -1,0 +1,2 @@
+*) Customize some Django Admin stuff:
+    -> for that you have to go to './core
