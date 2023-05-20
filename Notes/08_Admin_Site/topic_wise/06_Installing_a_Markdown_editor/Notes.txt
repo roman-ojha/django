@@ -1,5 +1,19 @@
-=> First we will install the package 'django-summernote'
-    -> https://djangopackages.org/packages/p/django-summernote/
-    -> pip install django-summernote
-    
-=> Now register into '
+*) Setup to install summernote package
+    => First we will install the package 'django-summernote'
+        -> https://djangopackages.org/packages/p/django-summernote/
+        -> pip install django-summernote
+    => Now register inside 'settings.py':
+        INSTALLED_APPS = [
+            'django_summernote'
+        ]
+    => in addition to that we have to add new path inside './core/urls.py'
+    => Summer Note also provide facility so that we can also implement images so we will create 'media\django-summernote' folder
+    => Now we will going to add the base root directory path inside 'settings.py' file:
+        MEDIA_URL = '/media/'
+        MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+    => python manage.py migrate
+        
+*) Apply Summernote package into models
+    -> for that we will write code inside './blog/admin.py'
+    -> also to use this summernote inside admin we have to provide 'X_FRAME_OPTIONS' inside 'settings.py' file
+    X_FRAME_OPTIONS = "SAMEORIGIN"
