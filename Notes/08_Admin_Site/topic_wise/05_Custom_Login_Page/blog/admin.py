@@ -1,61 +1,50 @@
-import django.apps
 from django.contrib import admin
-from django.core.files.base import File
-from django.db.models.base import Model
-from django.forms.utils import ErrorList
-from .models import Post
-from django import forms
-
-TEXT = "Some text that we can include"
+from . import models
 
 
-class PostAdmin(admin.ModelAdmin):
-    # specifying the fields and the over of fields that we want to display inside the admin site while adding and changing the record data
-    # fields = ['title', 'author']
-
-    # Group fields:
-    # grouping will display those grouped fields in same row
-    # fields = ['title', ('author', 'slug')]
-
-    # Create Sections:
-    # now here we will create the fields with different sections
-    fieldsets = (
-        # ("<name_of_the_section>",{'fields':(<fields_inside_the_section>)})
-        ("Section 1", {
-            'fields': ('title', 'author'),
-            # you can also include descriptions
-            'description': '%s' % TEXT,
-        }),
-        ("Section 2", {
-            'fields': ('slug',),
-            # you can attached some classes with you sections
-            'classes': ('collapse',),
-        }),
-    )
-    # https://docs.djangoproject.com/en/4.2/ref/contrib/admin/#django.contrib.admin.ModelAdmin.fieldsets
-
-    # Help Text:
-    # you can add some text underneath every fields to provide the user some information
-    # there is different way to achieve that but one of the way is by using the Model
-    # EX: inside the './models.py' on Post model: title = models.CharField(max_length=250, help_text="This is title title")
+# Creating custom Admin Site
+class BlogAdminArea(admin.AdminSite):
+    site_header = "Blog Admin Area"
+    # specifying the custom login template
+    login_template = 'blog/admin/login.html'
 
 
-# admin.site.register(Post, PostAdmin)
+blog_site = BlogAdminArea(name='BlogAdmin')
+blog_site.register(models.Post)
+# Now we will proved this admin site using url from '../core/urls.py'
 
+"""
+    => After that we will create our own Login Admin template inside '../template/blog/admin' folder
+    To use the template you have to add this inside 'settings.py'
+        TEMPLATES = [
+            {
+                'DIRS': [os.path.join(BASE_DIR, 'templates')],
+            },
+        ]
 
-# Custom Form:
-class PostForm(forms.ModelForm):
-    def __init__(self, *args, **kwargs):
-        super(PostForm, self).__init__(*args, **kwargs)
-        # now bellow here we can define what we want in our form
-        self.fields['title'].help_text = "New title help text"
-
-    class Meta:
-        model = Post
-        exclude = ('slug',)  # exclude the unwanted fields
-
-
-# Using the Custom form that we create and register it into the admin page
-@admin.register(Post)
-class PostFormAdmin(admin.ModelAdmin):
-    form = PostForm
+    *) Collect Default Static files
+        => So Now have to use the Static files like CSS, JS, images so we will add the static folder path inside 'settings.py' file
+            STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+        => And also have to add this code inside the 'urls.py' file
+            from django.conf import settings
+            from django.conf.urls.static import static
+            urlpatterns = [
+                path('admin/', admin.site.urls),
+                path('blog-admin/', blog_site.urls),
+            ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+        => Now we will going to run:
+            -> py manage.py collectstatic
+                -> this will generate all the default static files inside the '../static' folder, and there are the static files that django admin uses and we can use these static fils to customize the admin site
+    *) Customize Template:
+        => So, what we can do now is to find the template of the existing admin page & then copy that into you template and then make some changes over there
+        => So, because we are trying to override and customize the login page we will first get that default login page from the default django template which exist inside the packages Lib directory './venv/Lib/site-packages/django/contrib/admin/templates/admin/login.html' we will get that template and add it into the '/templates/blog/admin' folder
+        => Now inside the "BlogAdminArea" we have 'login_template' now we will specify the custom login template there
+    *) Customize CSS:
+        => Now we will try to apply custom styling for that we will going to use the default login page css file and add it into '../static/blog/admin/login.css'
+        => Now after customizing the 'login.css' file we will now include that css file into the custom 'login.html' file
+        => to use custom css files we have to specify the Static file root directory where css will be found so we will add bellow code inside the 'settings.py' file
+            STATICFILES_DIRS = [
+                os.path.join(BASE_DIR, 'static')
+            ]
+        => Now we will not going to use 'STATIC_ROOT' variable so we will remove that
+"""

@@ -1,0 +1,3 @@
+*) TroubleShooting the static files
+    -> python manage.py findstatic --verbosity 2 <file_name>.<extension>
+    -> where we can see where django is looking for the static files
