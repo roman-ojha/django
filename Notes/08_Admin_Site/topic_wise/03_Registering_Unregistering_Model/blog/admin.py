@@ -14,7 +14,7 @@ class PostAdmin(admin.ModelAdmin):
     fields = ['title', 'author']
 
 
-# admin.site.register(Post, PostAdmin)
+admin.site.register(Post, PostAdmin)
 
 # another way to register model
 # @admin.register(Post)
