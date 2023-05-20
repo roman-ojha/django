@@ -1,0 +1,7 @@
+*) Topics:
+    *> Setup a custom admin site
+        *> New admin area for the 'blog'
+            -> for that we will start writing some code inside './blog/admin.py'
+    *> Override the default admin site
+        -> for that we will start writing code from './core/apps.py'
+    *> Setup multiple admin site

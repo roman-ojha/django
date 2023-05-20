@@ -20,7 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-$x34ybm#j!#_$_czu^e^*q4218k%b_$k@at-(h4o-24!v3+d92'
+SECRET_KEY = 'django-insecure-n^o6lz6e$y%6mh#xnvmbws42=j57h5r)b%eupnm3e#m!v9epl8'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -31,14 +31,15 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
+    # overriding the default admin site with the custom admin site created inside the '../blog/apps.py'
+    'core.apps.BlogAdminConfig',
+    # 'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'blog',
-    'bookstore',
 ]
 
 MIDDLEWARE = [
