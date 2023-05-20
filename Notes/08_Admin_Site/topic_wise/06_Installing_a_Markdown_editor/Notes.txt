@@ -1,0 +1,5 @@
+=> First we will install the package 'django-summernote'
+    -> https://djangopackages.org/packages/p/django-summernote/
+    -> pip install django-summernote
+    
+=> Now register into '
