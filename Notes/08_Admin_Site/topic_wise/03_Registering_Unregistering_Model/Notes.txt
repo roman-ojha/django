@@ -1,1 +1,14 @@
 *) Topics:
+    *) Registering a model
+        Step 1: Import Model inside 'admin.py'
+        Step 2: admin.site.register(<Model>)
+        -> example is show inside the './blog/admin.py'
+    *) Registering a model - Object -> Customization
+        -> example is show inside the './blog/admin.py'
+    *) Registering All models
+        Step 1:Collect model data
+        Step 2: Loop through models
+        -> example is show inside the './blog/admin.py'
+    *) Unregister
+        -> example is show inside the './blog/admin.py'
+        
