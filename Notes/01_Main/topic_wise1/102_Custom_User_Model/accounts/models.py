@@ -60,7 +60,7 @@ class User(AbstractUser):
     def __str__(self) -> str:  # string representation of user object
         return self.username
 
-# After create the custom user model we have to tell Django that we have Custom User model created
+# After create the custom user model we have to tell Django that we have Custom User model created and use that Model as the User auth model for authentication
 # for that we will add this in 'settings.py' file:
 # AUTH_USER_MODEL = "accounts.User"
 
