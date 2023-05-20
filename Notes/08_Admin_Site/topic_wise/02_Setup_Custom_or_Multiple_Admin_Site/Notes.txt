@@ -5,3 +5,7 @@
     *> Override the default admin site
         -> for that we will start writing code from './core/apps.py'
     *> Setup multiple admin site
+        -> if you want different admin site for different users in that case you can create the multiple admin sites
+        -> for example here we will create the different admin site to handle different application
+        -> like for 'blog' app we will use './blog/admin.py' 'BlogAdminArea' site & for 'bookstore' app we will use './bookstore/admin.py' 'BookStoreAdminArea' site
+        -> now we can create the different url for different admin inside './core/urls.py'

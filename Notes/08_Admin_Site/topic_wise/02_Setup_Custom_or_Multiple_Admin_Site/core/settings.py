@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     # overriding the default admin site with the custom admin site created inside the '../blog/apps.py'
     'core.apps.BlogAdminConfig',
+    # also we have to remove the default django admin from here
     # 'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -40,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'blog',
+    'bookstore',
 ]
 
 MIDDLEWARE = [

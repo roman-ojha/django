@@ -6,3 +6,5 @@ class BlogAdminConfig(AdminConfig):
     # and specify the default Admin Site class
     default_site = "blog.admin.BlogAdminArea"
     # default_site = "<app_name>.admin.<admin_site_class_name>"
+
+# Now we will add this Config class inside the './settings.py' file inside 'INSTALLED_APPS'
