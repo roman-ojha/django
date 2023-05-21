@@ -1,0 +1,30 @@
+*) Topic:
+    *> Edit Admin template
+    *> Edit Admin style
+    
+
+*) Edit Admin template
+    => The default django template are stored inside the Lib folder './venv/Lib/site-packages/django/contrib/admin/templates/admin'
+    => in './Django_Default_Admin_folder_Structure.png' & './Django_Default_Admin_folder_Structure_02.png' we can see the django default admin template folder structure
+    => So we got all of these default templates now we just have to override to our own project
+    => For that we will going to create 'templates' folder inside './' directory
+    => Now we will going to add the template directory inside settings.py file:
+        TEMPLATES = [
+            {
+                'DIRS': [os.path.join(BASE_DIR, 'templates/')],
+            },
+        ]
+    => So now we will going to add the template inside this directory and it will going to override the default template files
+    => because django first check the template & static files inside the './templates' folder if it will get the same name template inside that folder it will use that template and override the default template
+    => So we have to create the exact same folder structure that is inside the default django template folder
+    => So we have added the 'base.html' file inside the './templates/admin/' folder directory now we can change what ever we want inside this template
+    
+*) Edit Admin Styling
+    => The default django static files are store inside the Lib folder '../../venv/Lib/site-packages/django/contrib/admin/static/admin'
+    => Now to override the css file we can follow the same process as Overriding the template file
+    => So we will going to model the same directory that default static directory are in django so we will create static directory inside './'
+    => So we will copy the base.css file and placed inside './static/admin/css' folder
+    => Also we have to add this in 'settings.py' file:
+        STATICFILES_DIRS = [
+            os.path.join(BASE_DIR, 'static')
+        ]

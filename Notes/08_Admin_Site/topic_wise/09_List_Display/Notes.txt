@@ -1,0 +1,1 @@
+=> https://www.dothedev.com/blog/django-admin-show-custom-field-list_display/
