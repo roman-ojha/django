@@ -53,6 +53,7 @@ class OrderPlacedFilter(DateRangeFilter):
     This filter is being used in django admin panel in profile model.
     It filters out the customers who have placed orders in specified time limit.
     """
+    # This parameter that we specify here will get used on the url
     parameter_name = 'placed_at'  # parameter name on the basis we want to filter
 
     def __init__(self, field, request, params, model, model_admin, field_path):
