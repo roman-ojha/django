@@ -5,6 +5,8 @@
 -> python manage.py shell (run django shell)
 -> python manage.py startapp <app_name> (to create new application on project)
 -> py manage.py <command> (small version of command)
+-> python manage.py loaddata <fixture_file_name> (to load fixture initial data)
+-> python manage.py dumpdata <application_name> > <file_name>.json (to dump data of application tables in json file)
 
 *) Run server
     -> python manage.py runserver (to run server)

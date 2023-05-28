@@ -6,6 +6,6 @@ from .models import BlogPost
 
 def home(request):
     context = {
-        'post': BlogPost.objects.all()
+        'posts': BlogPost.objects.all()
     }
     return render(request, 'home.html', context)

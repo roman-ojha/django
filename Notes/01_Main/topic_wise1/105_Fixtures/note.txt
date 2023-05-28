@@ -1,0 +1,8 @@
+=> first we will just going to create simple "BlogPost" model on blog app & then render it's record on template
+*) Fixture:
+    => we will going to create 'blog.json' file inside './blog/fixtures' folder
+    => this blog.json file will be used as the data source to add into our database table
+    => after adding data into 'blog.json' file we will going to run 'python manage.py loaddata blog' command to load data into our database table
+    *) Dumpdata:
+        -> this command will going to dump all the data from our database table into a json file
+        -> 'python manage.py dumpdata blog > <file_name>.json' command will going to dump all the data from 'blog' table into a json file

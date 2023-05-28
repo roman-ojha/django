@@ -1,0 +1,18 @@
+[
+  {
+    "model": "blog.BlogPost",
+    "pk": 1,
+    "fields": {
+      "title": "My first blog post",
+      "body": "This is my first blog post. I hope you like it!"
+    }
+  },
+  {
+    "model": "blog.BlogPost",
+    "pk": 2,
+    "fields": {
+      "title": "My second blog post",
+      "body": "This is my second blog post. I hope you like it!"
+    }
+  }
+]
