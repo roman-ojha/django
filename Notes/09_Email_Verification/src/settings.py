@@ -121,10 +121,11 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 
+# Settings for email
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'email'
-EMAIL_HOST_PASSWORD = 'password'
-
+EMAIL_HOST_USER = 'email'  # your business email from you want to send email to client
+EMAIL_HOST_PASSWORD = 'password'  # password of email
+# NOTE that we have to enable the less secure app if we want to send email from this given email address using @gmail.com
