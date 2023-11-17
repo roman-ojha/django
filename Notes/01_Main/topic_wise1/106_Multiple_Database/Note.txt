@@ -29,3 +29,11 @@
     
     -> Now we will going to create another app 'aqua'
     -> And do the exact same thing explained above for this application as well
+
+    -> Now we will going to create:
+        -> view on './aqua/views.py', & './blue/views.py'
+        -> templates on './aqua/templates', './blue/templates'
+        -> urls on './core/urls.py', './aqua/urls.py', './blue/urls.py'
+        
+
+-> You can read onto the documentation if you want to explore more: https://docs.djangoproject.com/en/4.2/topics/db/multi-db/
