@@ -1,0 +1,9 @@
+-> Most commonly we will use to setup 1 database and connect Django application with that 1 database, and Django will send the Queries directly to that database
+-> But when we will setup multiple database django will no longer have an idea which database to select
+-> './02_Router_In_between.png'
+-> So the idea is to create the Database router and in that router we will going describe what database are available for django application to connect to.
+-> What we use to do to query on the database before is like this:
+    -> <Model>.objects.all()
+-> But now we are having multiple database so we will going to query like this:
+    -> <Model>.objects.using('<database>').all()
+    -> And this information is going to the 'Router' and router chose which database to use.
