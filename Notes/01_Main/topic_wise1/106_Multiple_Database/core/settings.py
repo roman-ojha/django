@@ -74,11 +74,23 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
+    # bellow is the default alias database which django first look into
     'default': {
+        # 'ENGINE': 'django.db.backends.sqlite3',
+        # 'NAME': BASE_DIR / 'db.sqlite3',
+    },
+    # But we will going to create different database with different aliases
+    'users_db': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+        'NAME': BASE_DIR / 'users.db.sqlite3',
+    },
+    # Now to use the 'users_db' we have to create a router and tell django that 'users_db' exist
+    # So we will going to create a folder and file '../routers/db_routers.py'
+    # After that we will going to add 'DATABASE_ROUTERS' variable  where we will define all the available routers
 }
+
+# list all of the routers that are available for the application
+DATABASE_ROUTERS = ['routers.db_routers.AuthRouter']
 
 
 # Password validation

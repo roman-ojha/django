@@ -7,3 +7,11 @@
 -> But now we are having multiple database so we will going to query like this:
     -> <Model>.objects.using('<database>').all()
     -> And this information is going to the 'Router' and router chose which database to use.
+-> For now we will going to use 'sqlite3' database
+
+*) Steps:
+    -> now we will going to configure 'users_db' database on './core/settings.py', 'DATABASES' variable and configure router for that on './routers/db_routers.py'
+    -> now we can run migrations on that database and we have to provide the information about which database to migrate
+        -> python manage.py migrate --database=users_db
+    -> now we will going to create super user:
+        -> python manage.py createsuperuser --database=users_db
