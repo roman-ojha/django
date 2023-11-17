@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'blue',
 ]
 
 MIDDLEWARE = [
@@ -87,10 +88,17 @@ DATABASES = {
     # Now to use the 'users_db' we have to create a router and tell django that 'users_db' exist
     # So we will going to create a folder and file '../routers/db_routers.py'
     # After that we will going to add 'DATABASE_ROUTERS' variable  where we will define all the available routers
+
+    # Configuring the new database for 'blue' application
+    'blue_db': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'blue.db.sqlite3',
+    },
+    # and we need a new router for this as well
 }
 
 # list all of the routers that are available for the application
-DATABASE_ROUTERS = ['routers.db_routers.AuthRouter']
+DATABASE_ROUTERS = ['routers.db_routers.AuthRouter', 'routers.db_routers.Blue']
 
 
 # Password validation

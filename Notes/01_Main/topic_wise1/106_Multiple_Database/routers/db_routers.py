@@ -39,3 +39,25 @@ class AuthRouter:
         if app_label in self.route_app_labels:
             return db == 'users_db'
         return None
+
+
+# Router for 'blue' application database
+class Blue:
+    route_app_labels = {'blue'}
+    # So whenever we will going to migrate this application we don't want tables like 'auth', 'session' etc.. for the 'blue_db' database as well so we will not going to add it inside here
+    # So now only the 'blue' application table will going to appear in the 'blue_db' database
+
+    def db_for_read(self, model, **hints):
+        if model._meta.app_label in self.route_app_labels:
+            return 'blue_db'
+        return None
+
+    def db_for_write(self, model, **hints):
+        if model._meta.app_label in self.route_app_labels:
+            return 'blue_db'
+        return None
+
+    def allow_migrate(self, db, app_label, model_name=None, **hints):
+        if app_label in self.route_app_labels:
+            return db == 'blue_db'
+        return None

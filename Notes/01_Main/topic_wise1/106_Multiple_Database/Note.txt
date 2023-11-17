@@ -15,3 +15,14 @@
         -> python manage.py migrate --database=users_db
     -> now we will going to create super user:
         -> python manage.py createsuperuser --database=users_db
+    
+    -> Now we will going to create another app 'blue'
+    -> and provide 'blue' apps on 'INSTALLED_APPS' variable
+    -> and configure the new database for 'blue' app on 'DATABASES'
+    -> And configure the router for that database
+    -> And then we will going to need a new Model first to migrate
+    -> First we will create a migration file:
+        -> python manage.py makemigrations
+    -> Now migrate:
+        -> python manage.py migrate --database=blue_db
+    -> Now we will going to register the Admin on './blue/admin.py' for all models on 'blue' application
