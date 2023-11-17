@@ -26,3 +26,6 @@
     -> Now migrate:
         -> python manage.py migrate --database=blue_db
     -> Now we will going to register the Admin on './blue/admin.py' for all models on 'blue' application
+    
+    -> Now we will going to create another app 'aqua'
+    -> And do the exact same thing explained above for this application as well

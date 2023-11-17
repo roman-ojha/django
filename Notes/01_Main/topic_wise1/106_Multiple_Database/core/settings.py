@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'blue',
+    'aqua',
 ]
 
 MIDDLEWARE = [
@@ -95,10 +96,16 @@ DATABASES = {
         'NAME': BASE_DIR / 'blue.db.sqlite3',
     },
     # and we need a new router for this as well
+
+    'aqua_db': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'aqua.db.sqlite3',
+    },
 }
 
 # list all of the routers that are available for the application
-DATABASE_ROUTERS = ['routers.db_routers.AuthRouter', 'routers.db_routers.Blue']
+DATABASE_ROUTERS = ['routers.db_routers.AuthRouter',
+                    'routers.db_routers.Blue', 'routers.db_routers.Aqua']
 
 
 # Password validation
