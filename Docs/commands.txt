@@ -7,6 +7,10 @@
 -> py manage.py <command> (small version of command)
 -> python manage.py loaddata <fixture_file_name> (to load fixture initial data)
 -> python manage.py dumpdata <application_name> > <file_name>.json (to dump data of application tables in json file)
+python manage.py runserver --settings=<project>.settings (provide the setting.py file to run the django application)
+-> python manage.py dbshell (go to database shell)
+-> python manage.py <command> --database=<database_name> (to run command for specific database command like: 'migrate', 'createsuperuser', 'dbshell', 'inspectdb' etc...)
+-> python manage.dev.py inspectdb > models.py (generate Model for existing database tables)
 
 *) Run server
     -> python manage.py runserver (to run server)
