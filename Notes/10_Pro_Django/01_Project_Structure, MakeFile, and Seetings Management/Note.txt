@@ -10,6 +10,9 @@
     *) Split settings:
         -> poetry add django-split-settings PyYAML
         -> Now create a new package './core/project/settings'
+        -> Now create a new directory './core/project/settings/templates'
+        -> rename './core/project/settings.py' to base.py and move into './core/project/settings'
+        -> we will use 'base.py' for django default settings and we will going to creates it's one settings file for extra settings like for 'rest-framework', 'docker' etc..
 
 *) Command:
     -> poetry run <command>
