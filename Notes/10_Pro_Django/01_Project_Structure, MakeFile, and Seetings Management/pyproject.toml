@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "01_project_structure, makefile, and seetings management"
+version = "0.1.0"
+description = ""
+authors = ["Roman-Ojha <80277272+roman-ojha@users.noreply.github.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+Django = "^5.0.6"
+djangorestframework = "^3.15.1"
+psycopg2 = "^2.9.9"
+django-filter = "^24.2"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

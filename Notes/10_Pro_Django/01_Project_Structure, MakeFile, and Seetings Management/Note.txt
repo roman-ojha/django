@@ -1,0 +1,5 @@
+*) Setup:
+
+*) Command:
+    -> poetry run <command>
+    -> poetry run python manage.py runserver
