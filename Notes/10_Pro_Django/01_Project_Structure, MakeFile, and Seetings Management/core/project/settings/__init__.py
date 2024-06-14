@@ -24,8 +24,12 @@ include(
     # file1
     # file2
     'base.py',
+    'custom.py',
 
     # we will specify the local settings as optional so that if they have these file these we will include them here
     # In this case what ever we will add above optional settings and if optional settings will be found then options settings will override the above settings
-    optional(LOCAL_SETTINGS_FILE)
+    optional(LOCAL_SETTINGS_FILE),
+
+    'environment_variables.py',
+    'docker.py'
 )

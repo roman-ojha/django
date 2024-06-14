@@ -1,1 +1,2 @@
-settings.dev.py
+# settings.dev.py
+# NOTE: you have to add this './settings.dev.py' file to gitignore but for tutorial reason I haven't
