@@ -7,4 +7,26 @@
 
 # Creating the custom command
 runserver: # Now we can run 'make runserver'
-	poetry run python manage.py runserver
+# poetry run python manage.py runserver
+# beause we have moved the manage.py file into 'core' we have to run the module level file
+	poetry run python -m core.manage runserver
+
+.PHONY: install # by default these 'install', 'migrate' are called as target and makefile will assume that these are files but we want to epacify that these aren't a files rather these are custom commands, because of that it will increase performance because make won't have to search for any files
+# and also it will exclude the conflict of running files or a command
+install:
+	poetry install
+	
+.PHONY: install
+migrate:
+	poetry run python -m core.manage migrate
+
+.PHONY: install
+makemigrations:
+	poetry run python -m core.manage makemigrations
+	
+.PHONY: install
+createsuperuser:
+	poetry run python -m core.manage createsuperuser
+
+.PHONY: install
+update: install migrate; # combining multiple make command that we wrote above and creating new command

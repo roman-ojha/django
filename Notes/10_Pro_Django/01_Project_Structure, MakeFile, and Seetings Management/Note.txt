@@ -1,4 +1,15 @@
 *) Setup:
+    *> Init django project:
+        -> django-admin startproject project
+    *> add poetry
+    *> add makefile
+    *> structure project:
+        *) create 'core' parent level directory
+            -> https://youtu.be/DaxcmbWcdTA?list=PL5sSYBuH9_fgeMXw7JJXVCRqN8d02__De&t=1748
+    
+    *) Split settings:
+        -> poetry add django-split-settings PyYAML
+        -> Now create a new package './core/project/settings'
 
 *) Command:
     -> poetry run <command>
