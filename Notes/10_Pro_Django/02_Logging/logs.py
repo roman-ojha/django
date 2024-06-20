@@ -37,7 +37,9 @@ def division(numerator, denominator):
         logger.critical(
             f"Division by zero error with parameters: {numerator}/{denominator}")
         logger.error(
-            f"Division by zero error with parameters: {numerator}/{denominator}")
+            f"Division by zero error with parameters: {numerator}/{denominator}", exc_info=True)  # 'exc_info' will stack trace as well
+        logger.exception(
+            f"Division by zero error with parameters: {numerator}/{denominator}")  # No need of 'exc_info' for exception logger
         logger.warning(
             f"Division by zero error with parameters: {numerator}/{denominator}")
 

@@ -16,17 +16,17 @@ runserver: # Now we can run 'make runserver'
 install:
 	poetry install
 	
-.PHONY: install
+.PHONY: migrate 
 migrate:
 	poetry run python -m core.manage migrate
 
-.PHONY: install
+.PHONY: makemigrations 
 makemigrations:
 	poetry run python -m core.manage makemigrations
 	
-.PHONY: install
+.PHONY: createsuperuser 
 createsuperuser:
 	poetry run python -m core.manage createsuperuser
 
-.PHONY: install
+.PHONY: update 
 update: install migrate; # combining multiple make command that we wrote above and creating new command
