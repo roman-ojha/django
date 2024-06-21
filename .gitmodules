@@ -10,3 +10,6 @@
 [submodule "Tutorial/Tutorial_Projects/TweetMe"]
 	path = Notes/02_Projects/Tweetme
 	url = git@github.com:roman-ojha/django-tweetme.git
+[submodule "Notes/11_Pytest"]
+	path = Notes/11_Pytest
+	url = git@github.com:roman-ojha/pytest-example.git
