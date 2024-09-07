@@ -13,3 +13,6 @@
 [submodule "Notes/11_Pytest"]
 	path = Notes/11_Pytest
 	url = git@github.com:roman-ojha/pytest-example.git
+[submodule "Notes/12_Unit_test"]
+	path = Notes/12_Unit_test
+	url = git@github.com:roman-ojha/django-unit-test-example.git
